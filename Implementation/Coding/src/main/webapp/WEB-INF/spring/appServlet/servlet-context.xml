@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.mhs.goodsexchangehinge" />
+	<context:component-scan base-package="com.mhs.goodsexchangehinge.controller" />
 	
 	
 	
