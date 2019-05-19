@@ -8,13 +8,8 @@
 	<!-- include header page -->
 	<%@ include file="./shared/header.jsp"%>
 
-	<nav class="navbar navbar-light bg-light">
-		<form class="form-inline">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="Search Products" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
-	</nav>
+	<!-- include search page -->
+	<%@ include file="./common/search.jsp"%>
 
 	<div class="container-fluid">
 		<div class="row">
@@ -34,109 +29,16 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
+					<!-- include page homeProducts to home page -->
+					<%@ include file="./homepageProducts/homeProducts.jsp"%>
 				</div>
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
+					<!-- include page homeProducts to home page -->
+					<%@ include file="./homepageProducts/homeProducts.jsp"%>
 				</div>
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Product Name</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<button type="button" class="btn btn-info">Details</button>
-							</div>
-						</div>
-					</div>
+					<!-- include page homeProducts to home page -->
+					<%@ include file="./homepageProducts/homeProducts.jsp"%>
 				</div>
 			</div>
 			<div class="col-sm-3">
@@ -152,104 +54,20 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
-						<form>
-							<div class="form-group">
-								<p class="text-center">LOGIN</p>
-								<label for="exampleInputEmail1">USERNAME</label> <input
-									type="email" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" placeholder="Enter email">
-								<small id="emailHelp" class="form-text text-muted">We'll
-									never share your data with anyone else.</small>
-							</div>
-							<div class="form-group">
-								<label for="exampleInputPassword1">PASSWORD</label> <input
-									type="password" class="form-control" id="exampleInputPassword1"
-									placeholder="Password">
-							</div>
-							<div class="form-group form-check">
-								<input type="checkbox" class="form-check-input"
-									id="exampleCheck1"> <label class="form-check-label"
-									for="exampleCheck1">Remember me</label>
-							</div>
-							<button type="button" class="btn btn-outline-success">Login</button>
-							<a>Forgot your login details?</a>
-						</form>
+						<%@ include file="login.jsp" %>
 					</div>
 					<div class="tab-pane fade" id="profile" role="tabpanel"
 						aria-labelledby="profile-tab">
 						<p class="text-center">Registration</p>
 
-						<form>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Full Name</label> <input
-									type="text" class="form-control" id="formGroupExampleInput"
-									placeholder="Full Name">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput2">Gender</label>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="option1"
-										checked> <label class="form-check-label"
-										for="exampleRadios1">Male</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="option2"
-										checked> <label class="form-check-label"
-										for="exampleRadios2">Female</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="exampleRadios" id="exampleRadios1" value="option3"
-										checked> <label class="form-check-label"
-										for="exampleRadios3">Other</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Date of Birth</label> <input
-									type="date" class="form-control" id="formGroupExampleInput">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Contact No.</label> <input
-									type="text" class="form-control" id="formGroupExampleInput"
-									placeholder="12-345-67-89">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Username</label> <input
-									type="text" class="form-control" id="formGroupExampleInput"
-									placeholder="eg: sam">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Password</label> <input
-									type="password" class="form-control" id="formGroupExampleInput"
-									placeholder="**********">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Confirm Password</label> <input
-									type="password" class="form-control" id="formGroupExampleInput"
-									placeholder="**********">
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Address</label> <input
-									type="text" class="form-control" id="formGroupExampleInput"
-									placeholder="address"> <input type="text"
-									class="form-control" id="formGroupExampleInput"
-									placeholder="City eg: Kathmandu"> <input type="text"
-									class="form-control" id="formGroupExampleInput"
-									placeholder="Street No. eg: 123"> <input type="text"
-									class="form-control" id="formGroupExampleInput"
-									placeholder="Area Code eg: 01"> <input type="text"
-									class="form-control" id="formGroupExampleInput"
-									placeholder="House No eg: 21">
-							</div>
-							<button type="button" class="btn btn-outline-primary">Register</button>
-						</form>
+						<%@ include file="registration.jsp" %>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
+
 	<!-- include footer page -->
 	<%@ include file="./shared/footer.jsp"%>
 </body>
