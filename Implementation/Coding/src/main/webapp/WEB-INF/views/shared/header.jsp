@@ -1,56 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/css/bootstrap-theme.css">
 <title>header</title>
+<link href="resources/fonts/css/fontawesome-all.min.css"
+	rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--Bootstrap -->
+<link href="resources/bootstrap/css/mdb.min.css" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link href="resources/bootstrap/css/style.css" rel="stylesheet">
+<!-- Bootstrap data table -->
+<link href="resources/bootstrap/css/addons/datatables.min.css"
+	rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-toggleable-md  navbar navbar-inverse">
-	 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-	   <span class="navbar-toggler-icon"></span></button>
-	    <a class="navbar-brand" href="#">Goods Exchange Hinge</a>
-	     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">HOME<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">EXCHANGE</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">SALE</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">REQUEST</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          COMMUNITY
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">USER GUIDE</a>
-          <a class="dropdown-item" href="#">HELP</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">DASHBOARD</a>
-      </li>
-    </ul>
-     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link navbar-nav mr-auto" href="#">SIGN IN</a></li>
-      <li class="nav-item"><a class="nav-link navbar-nav mr-auto" href="#">USER IMAGE</a></li>
-      <li class="nav-item"><a class="nav-link navbar-nav mr-auto" href="#">USERNAME</a></li>
-      <li class="nav-item"><a class="nav-link navbar-nav mr-auto" href="#">LOGOUT</a></li>
-     </ul>
-  </div>
-</nav>
+	<!--Navbar -->
+	<nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color">
+		<a class="navbar-brand" href="get_home">Goods Exchange Hinge</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent-333"
+			aria-controls="navbarSupportedContent-333" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="get_home">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
+				</a>
+					<div class="dropdown-menu dropdown-default"
+						aria-labelledby="navbarDropdownMenuLink-333">
+						<a class="dropdown-item" href="#">USER GUIDE</a> <a
+							class="dropdown-item" href="#">HELP</a>
+					</div></li>
+				<li class="nav-item"><a class="nav-link" href="getDashboard">DASHBOARD</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto nav-flex-icons">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+						class="rounded-circle z-depth-0" alt="avatar image" height="35">
+				</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-default"
+						aria-labelledby="navbarDropdownMenuLink-333">
+						<a class="dropdown-item text-center" href="#">Username</a> <a
+							class="dropdown-item text-center" href="#">Profile</a> <a
+							class="dropdown-item text-center" href="#">Setting</a> <a
+							class="dropdown-item text-center" href="#">Logout</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
 
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="resources/js/popper.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="resources/bootstrap/js/jquery-3.4.0.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript"
+		src="resources/bootstrap/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<!--core JavaScript -->
+	<script type="text/javascript" src="resources/bootstrap/js/mdb.min.js"></script>
+	<!--Data table JavaScript -->
+	<script type="text/javascript"
+		src="resources/bootstrap/js/addons/datatables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#dtBasicExample').DataTable();
+			$('.dataTables_length').addClass('bs-select');
+		});
+	</script>
 </body>
 </html>

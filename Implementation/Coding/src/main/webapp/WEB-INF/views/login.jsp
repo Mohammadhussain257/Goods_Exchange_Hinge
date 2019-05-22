@@ -7,27 +7,39 @@
 <title>login</title>
 </head>
 <body>
-	<form>
-		<div class="form-group">
-			<p class="text-center">LOGIN</p>
-			<label for="exampleInputEmail1">USERNAME</label> <input type="email"
-				class="form-control" id="exampleInputEmail1"
-				aria-describedby="emailHelp" placeholder="username"> <small
-				id="emailHelp" class="form-text text-muted">We'll never
-				share your data with anyone else.</small>
+
+	<!-- Default form login -->
+	<form class="text-center border border-light p-5 heavy-rain-gradient">
+
+		<p class="h4 mb-4">Sign in</p>
+
+		<!-- Username -->
+		<input type="text" id="defaultLoginFormEmail"
+			class="form-control mb-4" placeholder="username">
+
+		<!-- Password -->
+		<input type="password" id="defaultLoginFormPassword"
+			class="form-control mb-4" placeholder="Password">
+
+		<div class="d-flex justify-content-around">
+			<div>
+				<!-- Remember me -->
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input"
+						id="defaultLoginFormRemember"> <label
+						class="custom-control-label" for="defaultLoginFormRemember">Remember
+						me</label>
+				</div>
+			</div>
+			<div>
+				<!-- Forgot password -->
+				<a href="#">Forgot password?</a>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">PASSWORD</label> <input
-				type="password" class="form-control" id="exampleInputPassword1"
-				placeholder="Password">
-		</div>
-		<div class="form-group form-check">
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1">Remember
-				me</label>
-		</div>
-		<button type="button" class="btn btn-outline-success">Login</button>
-		<a>Forgot your login details?</a>
+
+		<!-- Sign in button -->
+		<button class="btn btn-info btn-block my-4" type="submit">Sign
+			in</button>
 	</form>
 </body>
 </html>
