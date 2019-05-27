@@ -24,7 +24,7 @@
 			</a> <a href="#"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-user mr-3"></i>ACTIVE USER
-			</a> <a href="user_detail"
+			</a> <a href="user_list"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-table mr-3"></i>USER DETAILS
 			</a> <a href="#"

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>dashboard</title>
+
 </head>
 <body>
 	<!-- Header -->
@@ -21,5 +22,6 @@
 	<!--Main layout-->
 	<!-- Footer page included -->
 	<%@ include file="../shared/footer.jsp"%>
+	
 </body>
 </html>
