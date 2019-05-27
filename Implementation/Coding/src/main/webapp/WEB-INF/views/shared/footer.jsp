@@ -15,13 +15,13 @@
 
 		<!--Copyright-->
 		<div class="footer-copyright py-3">
-			© 2019 Copyright: <a href="#" target="_blank"> Goods Exchange
-				Hinge </a>
+			${serverTime} © Copyright: <a href="#" target="_blank"> Goods
+				Exchange Hinge </a>
 		</div>
-		<!--/.Copyright-->
+		<!--Copyright-->
 
 	</footer>
-	<!--/.Footer-->
+	<!--Footer-->
 
 </body>
 </html>

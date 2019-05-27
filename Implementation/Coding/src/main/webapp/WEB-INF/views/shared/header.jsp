@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<!-- import security tags -->
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,36 +35,46 @@
 				<li class="nav-item active"><a class="nav-link" href="get_home">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
-				</a>
-					<div class="dropdown-menu dropdown-default"
-						aria-labelledby="navbarDropdownMenuLink-333">
-						<a class="dropdown-item" href="#">USER GUIDE</a> <a
-							class="dropdown-item" href="#">HELP</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link" href="getDashboard">DASHBOARD</a>
-				</li>
+				<!--  allow access to anonymous user -->
+				<security:authorize access="isAnonymous()">
+					<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
+					</a>
+						<div class="dropdown-menu dropdown-default"
+							aria-labelledby="navbarDropdownMenuLink-333">
+							<a class="dropdown-item" href="#">USER GUIDE</a> <a
+								class="dropdown-item" href="#">HELP</a>
+						</div></li>
+				</security:authorize>
+				<!-- Give the authority only to the administrator -->
+				<security:authorize access="hasAuthority('ADMIN')">
+					<li class="nav-item"><a class="nav-link" href="getDashboard">DASHBOARD</a>
+					</li>
+				</security:authorize>
 			</ul>
 			<ul class="navbar-nav ml-auto nav-flex-icons">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-						class="rounded-circle z-depth-0" alt="avatar image" height="35">
-				</a>
-					<div class="dropdown-menu dropdown-menu-right dropdown-default"
-						aria-labelledby="navbarDropdownMenuLink-333">
-						<a class="dropdown-item text-center" href="#">Username</a> <a
-							class="dropdown-item text-center" href="#">Profile</a> <a
-							class="dropdown-item text-center" href="#">Setting</a> <a
-							class="dropdown-item text-center" href="#">Logout</a>
-					</div></li>
+				<!-- only authenticated user can access -->
+				<security:authorize access="isAuthenticated()">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img
+							src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+							class="rounded-circle z-depth-0" alt="avatar image" height="35">
+					</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-default"
+							aria-labelledby="navbarDropdownMenuLink-333">
+							<a class="dropdown-item text-center" href="#">${userModel.username}</a>
+							<a class="dropdown-item text-center" href="#">Profile</a> <a
+								class="dropdown-item text-center" href="#">Setting</a> <a
+								class="dropdown-item text-center" href="logout-user">Logout</a>
+						</div></li>
+				</security:authorize>
 			</ul>
 		</div>
 	</nav>
@@ -84,6 +97,9 @@
 			$('#dtBasicExample').DataTable();
 			$('.dataTables_length').addClass('bs-select');
 		});
+
+		$('.alert').alert()
+		$(".alert").alert('close')
 	</script>
 </body>
 </html>

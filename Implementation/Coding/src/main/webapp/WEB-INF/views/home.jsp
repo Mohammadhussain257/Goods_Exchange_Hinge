@@ -3,16 +3,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="resources/css/custom.css">
+<%-- <meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}"> --%>
+
 <title>Home</title>
 </head>
 <body class=" indigo lighten-5">
 	<!-- include header page -->
 	<%@ include file="./shared/header.jsp"%>
-	
+
 	<!--  include search form -->
-	<%@ include file="./common/search.jsp" %>
-	
+	<%@ include file="./common/search.jsp"%>
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2">
@@ -31,31 +33,21 @@
 				</div>
 			</div>
 
-			<div class="col-sm-7"><%@ include
+			<div class="col-sm-8"><%@ include
 					file="./homepageProducts/homeProducts.jsp"%></div>
 
 
-			<div class="col-sm-3">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item"><a class="nav-link blue lighten-3 active" id="login-tab"
-						data-toggle="tab" href="#login" role="tab" aria-controls="login"
-						aria-selected="true">Member Login</a></li>
-					<li class="nav-item"><a class="nav-link blue lighten-3" id="register-tab"
-						data-toggle="tab" href="#register" role="tab"
-						aria-controls="register" aria-selected="false">Not a member
-							yet?</a></li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="login" role="tabpanel"
-						aria-labelledby="login-tab">
-						
-						<%@ include file="login.jsp" %>
-						
-						</div>
-					<div class="tab-pane fade" id="register" role="tabpanel"
-						aria-labelledby="register-tab">
-							<%@ include file="registration.jsp" %>
-						</div>
+			<div class="col-sm-2">
+				<div class="card">
+					<div class="card-body  light-green lighten-3">
+						<h5 class="card-title">Member Login</h5>
+						<p>Get login and start swapping it's free and always will be.</p>
+						<a href="login" class="card-link">Login</a>
+						<h5 class="card-title">Not a member yet?</h5>
+						<p>Register now meet with like minded people and start
+							exchanging it's free and always will be.</p>
+						<a href="getRegisterForm" class="card-link">Register</a>
+					</div>
 				</div>
 			</div>
 		</div>
