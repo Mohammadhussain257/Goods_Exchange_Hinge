@@ -27,7 +27,7 @@ public class GlobalController {
 	@ModelAttribute("userModel")
 	public UserModel getUserModel() {
 		if (session.getAttribute("userModel") == null) {
-			// add the the user model
+			// add user model
 			// if the user is not inside the session then authenticate the user
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			User user = userService.findByUsername(auth.getName());
