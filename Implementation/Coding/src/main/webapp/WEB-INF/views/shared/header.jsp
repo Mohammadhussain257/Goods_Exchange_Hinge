@@ -35,22 +35,23 @@
 				<li class="nav-item active"><a class="nav-link" href="get_home">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<!--  allow access to anonymous user -->
-				<security:authorize access="isAnonymous()">
-					<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
-					</a>
-						<div class="dropdown-menu dropdown-default"
-							aria-labelledby="navbarDropdownMenuLink-333">
-							<a class="dropdown-item" href="#">USER GUIDE</a> <a
-								class="dropdown-item" href="#">HELP</a>
-						</div></li>
-				</security:authorize>
+				<!--  allow access to anonymous user start-->
+
+				<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
+				</a>
+					<div class="dropdown-menu dropdown-default"
+						aria-labelledby="navbarDropdownMenuLink-333">
+						<a class="dropdown-item" href="#">USER GUIDE</a> <a
+							class="dropdown-item" href="#">HELP</a>
+					</div></li>
+				<!--  allow access to anonymous user end-->
+
 				<!-- Give the authority only to the administrator -->
 				<security:authorize access="hasAuthority('ADMIN')">
 					<li class="nav-item"><a class="nav-link" href="getDashboard">DASHBOARD</a>
