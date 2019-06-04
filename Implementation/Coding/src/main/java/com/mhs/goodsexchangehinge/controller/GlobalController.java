@@ -8,8 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.mhs.goodsexchangehinge.dto.UserModel;
 import com.mhs.goodsexchangehinge.model.User;
-import com.mhs.goodsexchangehinge.model.UserModel;
 import com.mhs.goodsexchangehinge.service.UserService;
 
 @ControllerAdvice
@@ -35,10 +35,16 @@ public class GlobalController {
 				// create a new userModel object to pass the user details
 				userModel = new UserModel();
 				userModel.setUserId(user.getUserId());
+				userModel.setFirstName(user.getFirstName());
+				userModel.setLastName(user.getLastName());
+				userModel.setAddress(user.getAddress());
+				userModel.setPhoneNumber(user.getPhoneNumber());
 				userModel.setEmail(user.getEmail());
 				userModel.setIsActive(user.getIsActive());
 				userModel.setUsername(user.getUsername());
 				userModel.setRole(user.getRole());
+
+				System.out.println(user.getFirstName());
 
 				// set the userModel inside the session
 				session.setAttribute("userModel", userModel);

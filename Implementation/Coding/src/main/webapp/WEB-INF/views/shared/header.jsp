@@ -71,7 +71,7 @@
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">
 							<a class="dropdown-item text-center" href="#">${userModel.username}</a>
-							<a class="dropdown-item text-center" href="#">Profile</a> <a
+							<a class="dropdown-item text-center" href="getProfile">Profile</a> <a
 								class="dropdown-item text-center" href="#">Setting</a> <a
 								class="dropdown-item text-center" href="logout-user">Logout</a>
 						</div></li>

@@ -33,9 +33,9 @@ public class UserController {
 		return "registration";
 	}
 
-	@RequestMapping(value = "/getEditUserForm", method = RequestMethod.GET)
-	public String getUserEditFrom() {
-		return "";
+	@RequestMapping(value = "/getProfile", method = RequestMethod.GET)
+	public String getUserProfile() {
+		return "user/profile";
 	}
 
 	@RequestMapping(value = "/updateUserDetails", method = RequestMethod.POST)
