@@ -75,15 +75,9 @@ public class UserController {
 	@RequestMapping(value = "/change_password", method = RequestMethod.POST)
 	public String changePassword(@ModelAttribute User user, Model model) {
 		if (user != null) {
-
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
 		return "redirect:/getProfile";
-	}
-
-	@RequestMapping(value = "/deleteUserDetails", method = RequestMethod.GET)
-	public String deleteUserDetail() {
-		return "";
 	}
 
 	@RequestMapping(value = "/upload_Profile_image", method = RequestMethod.POST)
@@ -93,6 +87,11 @@ public class UserController {
 		return "redirect:/getProfile";
 	}
 
+	@RequestMapping(value="/manageProduct",method=RequestMethod.GET)
+	public String manageProduct(@ModelAttribute User user) {
+		return"Products/manageProduct";
+	}
+	
 	@ModelAttribute
 	public Model getGenderList(Model model) {
 		List<String> genderList = new ArrayList<>();

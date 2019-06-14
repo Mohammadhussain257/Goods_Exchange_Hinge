@@ -1,6 +1,7 @@
 package com.mhs.goodsexchangehinge.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,16 +17,17 @@ public class ProductRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productReqId;
-	private String location;
+	private String productName;
 	private Double productValue;
+	private Date date;
 	private String description;
 	private String imageUrl;
 	@ManyToOne
 	private User user;
-	@OneToOne(mappedBy="productRequest")
+	@OneToOne(mappedBy = "productRequest")
 	private ProductRequestCompleted productRequestCompleted;
 	@OneToMany(mappedBy = "productRequest")
-	private List<Category> category=new ArrayList<>();
+	private List<Category> category = new ArrayList<>();
 
 	public int getProductReqId() {
 		return productReqId;
@@ -35,12 +37,12 @@ public class ProductRequest {
 		this.productReqId = productReqId;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Double getProductValue() {
@@ -49,6 +51,14 @@ public class ProductRequest {
 
 	public void setProductValue(Double productValue) {
 		this.productValue = productValue;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getDescription() {
