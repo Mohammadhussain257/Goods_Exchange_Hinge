@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +17,10 @@
 
 		<!--Copyright-->
 		<div class="footer-copyright py-3">
-			${serverTime} © Copyright: <a href="#" target="_blank"> Goods
-				Exchange Hinge </a>
+			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<fmt:formatDate type="both" dateStyle="long" timeStyle="long"
+				value="${now}"/>
+			© Copyright: <a href="#" target="_blank"> Goods Exchange Hinge </a>
 		</div>
 		<!--Copyright-->
 

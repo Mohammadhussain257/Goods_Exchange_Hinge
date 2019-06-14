@@ -37,14 +37,14 @@ public class GlobalController {
 				userModel.setUserId(user.getUserId());
 				userModel.setFirstName(user.getFirstName());
 				userModel.setLastName(user.getLastName());
+				userModel.setGender(user.getGender());
+				userModel.setDob(user.getDob());
 				userModel.setAddress(user.getAddress());
 				userModel.setPhoneNumber(user.getPhoneNumber());
 				userModel.setEmail(user.getEmail());
 				userModel.setIsActive(user.getIsActive());
 				userModel.setUsername(user.getUsername());
 				userModel.setRole(user.getRole());
-
-				System.out.println(user.getFirstName());
 
 				// set the userModel inside the session
 				session.setAttribute("userModel", userModel);
