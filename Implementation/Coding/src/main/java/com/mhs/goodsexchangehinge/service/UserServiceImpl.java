@@ -21,8 +21,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUserInfo(int id) {
-		userRepository.deleteUserInfo(id);
+	public void updateUser(User user) {
+		userRepository.updateUser(user);
+	}
+
+	@Override
+	public void deleteUserInfo(int userId) {
+		userRepository.deleteUserInfo(userId);
 	}
 
 	@Override
@@ -31,13 +36,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id) {
-		return userRepository.getUserById(id);
+	public User getUserById(int userId) {
+		return userRepository.getUserById(userId);
 	}
 
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public User changePasswordByUserId(int userId) {
+		return userRepository.changePasswordByUserId(userId);
+	}
+
+	@Override
+	public User changePasswordByEmail(String email) {
+		return userRepository.changePasswordByEmail(email);
 	}
 
 }

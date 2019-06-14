@@ -37,10 +37,10 @@
 				</a></li>
 				<!--  allow access to anonymous user start-->
 
-				<li class="nav-item"><a class="nav-link" href="#">EXCHANGE</a>
+				<li class="nav-item"><a class="nav-link" href="exchange">EXCHANGE</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">REQUEST</a></li>
+				<li class="nav-item"><a class="nav-link" href="request">REQUEST</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY
@@ -71,8 +71,9 @@
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">
 							<a class="dropdown-item text-center" href="#">${userModel.username}</a>
-							<a class="dropdown-item text-center" href="getProfile">Profile</a> <a
-								class="dropdown-item text-center" href="#">Setting</a> <a
+							<a class="dropdown-item text-center" href="getProfile?userId=${userModel.userId}">Profile</a>
+							<a class="dropdown-item text-center"
+								href="editForm?userId=${userModel.userId}">Setting</a> <a
 								class="dropdown-item text-center" href="logout-user">Logout</a>
 						</div></li>
 				</security:authorize>

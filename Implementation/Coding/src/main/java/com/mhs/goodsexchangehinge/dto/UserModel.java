@@ -1,6 +1,7 @@
 package com.mhs.goodsexchangehinge.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserModel implements Serializable {
 
@@ -8,6 +9,8 @@ public class UserModel implements Serializable {
 	private int userId;
 	private String firstName;
 	private String lastName;
+	private String gender;
+	private Date dob;
 	private String address;
 	private String phoneNumber;
 	private String email;
@@ -23,8 +26,6 @@ public class UserModel implements Serializable {
 		this.userId = userId;
 	}
 
-	
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -39,6 +40,22 @@ public class UserModel implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
 	public String getAddress() {

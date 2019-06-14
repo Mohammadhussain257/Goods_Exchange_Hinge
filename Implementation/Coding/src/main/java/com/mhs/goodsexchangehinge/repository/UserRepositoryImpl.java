@@ -21,12 +21,17 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public void saveUser(User user) {
-		HibernateUtil.getSession(sessionFactory).save(user);
+		HibernateUtil.getSession(sessionFactory).merge(user);
 	}
 
 	@Override
-	public void deleteUserInfo(int id) {
-		User user = getUserById(id);
+	public void updateUser(User user) {
+		HibernateUtil.getSession(sessionFactory).update(user);
+	}
+
+	@Override
+	public void deleteUserInfo(int userId) {
+		User user = getUserById(userId);
 		if (user != null) {
 			HibernateUtil.getSession(sessionFactory).delete(user);
 		}
@@ -42,8 +47,8 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User getUserById(int id) {
-		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, id);
+	public User getUserById(int userId) {
+		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, userId);
 	}
 
 	@Override
@@ -51,6 +56,16 @@ public class UserRepositoryImpl implements UserRepository {
 		@SuppressWarnings("deprecation")
 		Criteria criteria = HibernateUtil.getSession(sessionFactory).createCriteria(User.class);
 		return (User) criteria.add(Restrictions.eq("username", username)).uniqueResult();
+	}
+
+	@Override
+	public User changePasswordByUserId(int userId) {
+		return (User) HibernateUtil.getSession(sessionFactory).find(User.class, userId);
+	}
+
+	@Override
+	public User changePasswordByEmail(String email) {
+		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, email);
 	}
 
 }

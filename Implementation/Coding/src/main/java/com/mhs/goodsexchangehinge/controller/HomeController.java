@@ -1,7 +1,5 @@
 package com.mhs.goodsexchangehinge.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +30,6 @@ public class HomeController {
 	@RequestMapping(value = { "/", "/get_home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate);
-
 		return "home";
 	}
 
@@ -72,6 +63,15 @@ public class HomeController {
 		return "redirect:/login?logout";
 	}
 
+	@RequestMapping(value="/exchange",method=RequestMethod.GET)
+	public String exchangeProduct() {
+		return"Products/Exchange";
+	}
+	@RequestMapping(value="/request",method=RequestMethod.GET)
+	public String requestProduct() {
+		return"Products/Reqeust";
+	}
+	
 	@RequestMapping(value = "/access-denied")
 	public String accessDenidPage(Model model) {
 		model.addAttribute("title", "403 Access Denied");

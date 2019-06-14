@@ -31,7 +31,6 @@
 									<th>Email</th>
 									<th>Address</th>
 									<th>Username</th>
-									<th>Password</th>
 									<th>Phone No.</th>
 									<th>Action</th>
 								</tr>
@@ -45,12 +44,8 @@
 										<td><c:out value="${user.email}" /></td>
 										<td><c:out value="${user.address}" /></td>
 										<td><c:out value="${user.username}" /></td>
-										<td><c:out value="${user.password}" /></td>
 										<td><c:out value="${user.phoneNumber}" /></td>
 										<td><span><button type="button"
-													class="btn btn-info btn-rounded  btn-sm my-0">
-													<i class="fas fa-pencil-alt"></i>
-												</button></span> <span><button type="button"
 													class="btn btn-danger btn-rounded btn-sm my-0 mt-1">
 													<i class="fas fa-trash-alt"></i>
 												</button></span></td>
@@ -65,7 +60,6 @@
 									<th>Email</th>
 									<th>Address</th>
 									<th>Username</th>
-									<th>Password</th>
 									<th>Phone No.</th>
 									<th>Action</th>
 								</tr>

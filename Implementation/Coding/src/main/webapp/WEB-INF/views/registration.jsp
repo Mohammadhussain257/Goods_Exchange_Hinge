@@ -36,13 +36,25 @@
 										class="form-control" placeholder="Last name" path="lastName"></form:input>
 								</div>
 							</div>
+							<!-- Date of birth-->
+							<small id="defaultRegisterFormdob"
+								class="form-text text-muted mb-4">Choose your birth date</small>
+							<form:input type="date" id="defaultRegisterFormdob"
+								class="form-control mb-4" path="dob"></form:input>
+								<!-- gneder-->
+							<small id="defaultRegisterFormgender"
+								class="form-text text-muted mb-4">Choose your gender</small>
+							<form:radiobuttons id="defaultRegisterFormgender"
+								class="mb-4" path="gender" items="${genderList}"/>
 
 							<!-- E-mail -->
 							<form:input type="email" id="defaultRegisterFormEmail"
 								class="form-control mb-4" placeholder="E-mail" path="email"></form:input>
-							<form:input type="text" id="defaultRegisterFormEmail"
+								<!-- address -->
+							<form:input type="text" id="defaultRegisterFormaddress"
 								class="form-control mb-4" placeholder="Address" path="address"></form:input>
-							<form:input type="text" id="defaultRegisterFormEmail"
+								<!-- username -->
+							<form:input type="text" id="defaultRegisterFormusername"
 								class="form-control mb-4" placeholder="username" path="username"></form:input>
 							<!-- Password -->
 							<form:input type="password" id="defaultRegisterFormPassword"
@@ -53,7 +65,7 @@
 								and 1 digit </small>
 
 							<!-- Confirm Password -->
-							<form:input type="password" id="defaultRegisterFormPassword"
+							<form:input type="password" id="defaultRegisterFormConfirmPassword"
 								class="form-control" placeholder="Confirm Password" path=""
 								aria-describedby="defaultRegisterFormPasswordHelpBlock"></form:input>
 							<small id="defaultRegisterFormPasswordHelpBlock"
