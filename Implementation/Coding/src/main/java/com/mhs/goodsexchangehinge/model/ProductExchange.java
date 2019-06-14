@@ -1,6 +1,7 @@
 package com.mhs.goodsexchangehinge.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class ProductExchange {
 	private String productName;
 	private Double productValue;
 	private String exchangeFor;
+	private Date date;
 	private String description;
 	private String imageUrl;
 	@ManyToOne
@@ -58,6 +60,15 @@ public class ProductExchange {
 
 	public void setExchangeFor(String exchangeFor) {
 		this.exchangeFor = exchangeFor;
+	}
+
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getDescription() {
