@@ -63,15 +63,30 @@ public class HomeController {
 		return "redirect:/login?logout";
 	}
 
-	@RequestMapping(value="/exchange",method=RequestMethod.GET)
+	@RequestMapping(value = "/exchange", method = RequestMethod.GET)
 	public String exchangeProduct() {
-		return"Products/Exchange";
+		return "Products/Exchange";
 	}
-	@RequestMapping(value="/request",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/request", method = RequestMethod.GET)
 	public String requestProduct() {
-		return"Products/Reqeust";
+		return "Products/Reqeust";
+	}
+
+	@RequestMapping(value = "/forum", method = RequestMethod.GET)
+	public String getForum() {
+		return "forum";
 	}
 	
+	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
+	public String getPrivacyPolicy() {
+		return "privacyPolicy";
+	}
+	@RequestMapping(value = "/termOfUse", method = RequestMethod.GET)
+	public String getTermOfUser() {
+		return "termOfUse";
+	}
+
 	@RequestMapping(value = "/access-denied")
 	public String accessDenidPage(Model model) {
 		model.addAttribute("title", "403 Access Denied");

@@ -13,12 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ImageUtil {
-	public static final String IMAGE_UPLOAD_PATH = "";
+	public static final String IMAGE_UPLOAD_PATH = "C:/SaveImage/";
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
 
 	public static String writeImageToFile(CommonsMultipartFile file) {
-		String imageUrl = IMAGE_UPLOAD_PATH + file.getOriginalFilename();
-		try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(imageUrl))) {
+		String imageUrl = IMAGE_UPLOAD_PATH + File.separator + file.getOriginalFilename();
+		File fileSaveDir = new File(imageUrl);
+		if (!fileSaveDir.exists()) {
+			fileSaveDir.mkdirs();
+		}
+		try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(fileSaveDir))) {
 			byte[] bytes = file.getBytes();
 			out.write(bytes);
 			out.flush();

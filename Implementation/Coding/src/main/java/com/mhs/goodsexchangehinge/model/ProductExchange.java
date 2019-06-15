@@ -1,15 +1,11 @@
 package com.mhs.goodsexchangehinge.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,12 +19,8 @@ public class ProductExchange {
 	private Date date;
 	private String description;
 	private String imageUrl;
-	@ManyToOne
+	@OneToOne
 	private User user;
-	@OneToOne(mappedBy = "productExchange")
-	private ProductExchangeCompleted productExchangeCompleted;
-	@OneToMany(mappedBy = "productExchange")
-	private List<Category> category = new ArrayList<>();
 
 	public int getProductExcId() {
 		return productExcId;
@@ -62,7 +54,6 @@ public class ProductExchange {
 		this.exchangeFor = exchangeFor;
 	}
 
-	
 	public Date getDate() {
 		return date;
 	}
@@ -94,21 +85,5 @@ public class ProductExchange {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public ProductExchangeCompleted getProductExchangeCompleted() {
-		return productExchangeCompleted;
-	}
-
-	public void setProductExchangeCompleted(ProductExchangeCompleted productExchangeCompleted) {
-		this.productExchangeCompleted = productExchangeCompleted;
-	}
-
-	public List<Category> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<Category> category) {
-		this.category = category;
-	}
-
+	
 }
