@@ -25,7 +25,8 @@
 		<!-- Permit this uri only to the admin -->
 		<intercept-url pattern="/getDashboard/**" access="hasAuthority('ADMIN')" />
 		<intercept-url pattern="/user_list/**" access="hasAuthority('ADMIN')" />
-		<intercept-url pattern="/add_category/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/category/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/addCategory/**" access="hasAuthority('ADMIN')" />
 		<!-- Permit to rest of the user -->
 		<intercept-url pattern="/**" access="permitAll" />
 		<!-- navigate to login url -->

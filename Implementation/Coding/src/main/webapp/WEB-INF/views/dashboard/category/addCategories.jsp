@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -25,119 +26,59 @@
 							<h3 class="text-center">Add Category</h3>
 						</div>
 						<hr>
-						<form action="" method="post">
+						<form action="addCategory" method="post">
 							<div class="form-group">
 								<label class="control-label">Category Name</label> <input
 									type="text" class="form-control" placeholder="eg:- Electronics"
-									required>
+									name="categoryName"></input>
 							</div>
-							<div>
-								<button type="submit" class="btn btn-lg btn-info btn-block">
-									<span>ADD</span>
-								</button>
-							</div>
+
+							<button type="submit" class="btn btn-lg btn-info btn-block">
+								<span>ADD</span>
+							</button>
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+
 						</form>
 					</div>
 				</div>
 				<!-- MAIN CONTENT END-->
 				<!-- CATEGORY DATA TABLE START -->
 				<div class="d-flex justify-content-center">
-					<table id="dtBasicExample"
-						class="table table-striped table-bordered table-sm w-auto purple lighten-5">
-						<thead class="text-nowrap">
-							<tr>
-								<th>S.N.</th>
-								<th class="th-sm">Category Name</th>
-								<th class="th-sm">Action</th>
-							</tr>
-						</thead>
-						<tbody class="text-nowrap">
-							<tr>
-								<td>1</td>
-								<td>Tiger Nixon</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Garrett Winters</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Ashton Cox</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Cedric Kelly</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Airi Satou</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>Brielle Williamson</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>Herrod Chandler</td>
-								<td><span><button type="button"
-											class="btn btn-info btn-rounded  btn-sm my-0">
-											<i class="fas fa-pencil-alt"></i>
-										</button></span> <span><button type="button"
-											class="btn btn-danger btn-rounded btn-sm my-0">
-											<i class="fas fa-trash-alt"></i>
-										</button></span></td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>S.N.</th>
-								<th>Name</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
-					</table>
+					<c:if test="${not empty categories}">
+						<table id="dtBasicExample"
+							class="table table-striped table-bordered table-sm w-auto purple lighten-5">
+							<thead class="text-nowrap">
+								<tr>
+									<th>S.N.</th>
+									<th class="th-sm">Category Name</th>
+									<th class="th-sm">Action</th>
+								</tr>
+							</thead>
+							<tbody class="text-nowrap">
+								<c:forEach items="${categories}" var="category">
+									<tr>
+										<td>${category.id}</td>
+										<td>${category.categoryName}</td>
+										<td><span><button type="button"
+													class="btn btn-info btn-rounded  btn-sm my-0">
+													<i class="fas fa-pencil-alt"></i>
+												</button></span> <span><button type="button"
+													class="btn btn-danger btn-rounded btn-sm my-0">
+													<i class="fas fa-trash-alt"></i>
+												</button></span></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>S.N.</th>
+									<th>Name</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 				<!-- CATEgoRy DATA TABLE END -->
 			</div>

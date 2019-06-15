@@ -50,8 +50,8 @@
 				</a>
 					<div class="dropdown-menu dropdown-default"
 						aria-labelledby="navbarDropdownMenuLink-333">
-						<a class="dropdown-item" href="#">USER GUIDE</a> <a
-							class="dropdown-item" href="#">HELP</a>
+						<a class="dropdown-item" href="forum">FORUM</a> <a
+							class="dropdown-item" href="#">USER GUIDE</a>
 					</div></li>
 				<!--  allow access to anonymous user end-->
 

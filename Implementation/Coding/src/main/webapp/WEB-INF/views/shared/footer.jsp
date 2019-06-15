@@ -18,9 +18,11 @@
 		<!--Copyright-->
 		<div class="footer-copyright py-3">
 			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<a href="privacyPolicy">Privacy Policy</a> ||
 			<fmt:formatDate type="both" dateStyle="long" timeStyle="long"
 				value="${now}"/>
-			© Copyright: <a href="#" target="_blank"> Goods Exchange Hinge </a>
+			© Copyright: <a href="#" target="_blank"> Goods Exchange Hinge </a> ||
+			<a href="termOfUse">Terms of Use</a>
 		</div>
 		<!--Copyright-->
 

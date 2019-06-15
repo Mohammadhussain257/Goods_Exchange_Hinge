@@ -35,12 +35,6 @@ public class User {
 	private Boolean isActive;
 	private String role;
 	@OneToMany(mappedBy = "user")
-	private List<ProfilePic> profilePic = new ArrayList<>();
-	@OneToMany(mappedBy = "user")
-	private List<ProductExchange> productExchange = new ArrayList<>();
-	@OneToMany(mappedBy = "user")
-	private List<ProductRequest> productRequest = new ArrayList<>();
-	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<>();
 
 	public int getUserId() {
@@ -137,30 +131,6 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public List<ProfilePic> getUploadImage() {
-		return profilePic;
-	}
-
-	public void setUploadImage(List<ProfilePic> profilePic) {
-		this.profilePic = profilePic;
-	}
-
-	public List<ProductExchange> getProductExchange() {
-		return productExchange;
-	}
-
-	public void setProductExchange(List<ProductExchange> productExchange) {
-		this.productExchange = productExchange;
-	}
-
-	public List<ProductRequest> getProductRequest() {
-		return productRequest;
-	}
-
-	public void setProductRequest(List<ProductRequest> productRequest) {
-		this.productRequest = productRequest;
 	}
 
 	public List<Login> getLogin() {
