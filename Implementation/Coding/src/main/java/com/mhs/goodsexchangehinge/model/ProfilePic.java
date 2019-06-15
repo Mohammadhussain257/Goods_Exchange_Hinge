@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProfilePic {
@@ -12,7 +12,7 @@ public class ProfilePic {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int imageId;
 	private String image_url;
-	@ManyToOne
+	@OneToOne
 	private User user;
 
 	public int getImageId() {

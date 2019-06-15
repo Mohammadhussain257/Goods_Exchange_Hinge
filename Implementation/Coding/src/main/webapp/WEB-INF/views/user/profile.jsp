@@ -13,7 +13,8 @@
 						class="rounded-circle img-fluid" alt="Responsive image">
 				</div>
 				<div class="mt-4">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="uploadProfileimage" method="post"
+						enctype="multipart/form-data">
 						<div class="d-flex justify-content-center">
 							<div class="input-group col-lg-6 col-md-12">
 								<div class="input-group-prepend">
@@ -22,17 +23,19 @@
 								</div>
 								<div class="custom-file">
 
-									<input type="file" class="custom-file-input"
+									<input type="file" name="image" class="custom-file-input"
 										id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
-										required> <label class="custom-file-label"
+										required></input> <label class="custom-file-label"
 										for="inputGroupFile01">Choose Your Avatar</label>
 								</div>
 							</div>
 						</div>
-						<div class="mt-4">
-							<input type="submit" class="btn btn-rounded btn blue-gradient"
-								value="Upload">
-						</div>
+						<button type="submit"
+							class="btn btn-rounded btn blue-gradient mt-4">
+							<span>UPLOAD</span>
+						</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
 					</form>
 				</div>
 				<hr class="danger-color-dark md" />
@@ -64,7 +67,7 @@
 									<p class="uppercase font-weight-bold">First Name</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${userModel.firstName}">
+											value="${user.firstName}">
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -74,7 +77,7 @@
 									<p class="uppercase font-weight-bold">Last Name</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${userModel.lastName}">
+											value="${user.lastName}">
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -90,7 +93,7 @@
 									<p class="uppercase font-weight-bold">Gender</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${userModel.gender}">
+											value="${user.gender}">
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -100,7 +103,7 @@
 									<p class="uppercase font-weight-bold">Date of Birth</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${userModel.dob}">
+											value="${user.dob}">
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -116,7 +119,7 @@
 									<p class="uppercase font-weight-bold">Username</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${userModel.username}">
+											value="${user.username}">
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -132,11 +135,11 @@
 				<div class="col-md-3 text-center">
 					<ul class="list-unstyled mb-0">
 						<li><i class="fas fa-map-marker-alt fa-2x blue-text"></i>
-							<p>${userModel.address}</p></li>
+							<p>${user.address}</p></li>
 						<li><i class="fas fa-phone fa-2x mt-4 blue-text"></i>
-							<p>${userModel.phoneNumber}</p></li>
+							<p>${user.phoneNumber}</p></li>
 						<li><i class="fas fa-envelope fa-2x mt-4 blue-text"></i>
-							<p class="mb-0">${userModel.email}</p></li>
+							<p class="mb-0">${user.email}</p></li>
 					</ul>
 				</div>
 				<!-- Grid column -->
