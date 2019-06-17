@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +36,8 @@ public class User {
 	private String phoneNumber;
 	private Boolean isActive;
 	private String role;
+	@OneToMany(mappedBy = "user")
+	private List<ProfilePic> profilePic=new ArrayList<>();
 	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<>();
 
@@ -123,6 +127,14 @@ public class User {
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public List<ProfilePic> getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(List<ProfilePic> profilePic) {
+		this.profilePic = profilePic;
 	}
 
 	public String getRole() {

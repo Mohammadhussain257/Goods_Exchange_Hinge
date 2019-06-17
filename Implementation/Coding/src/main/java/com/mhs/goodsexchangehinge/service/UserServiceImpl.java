@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mhs.goodsexchangehinge.model.ProfilePic;
 import com.mhs.goodsexchangehinge.model.User;
 import com.mhs.goodsexchangehinge.repository.UserRepository;
 
@@ -53,6 +54,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User changePasswordByEmail(String email) {
 		return userRepository.changePasswordByEmail(email);
+	}
+
+	@Override
+	public void saveProfilePic(ProfilePic profilePic) {
+		userRepository.saveProfilePic(profilePic);
 	}
 
 }

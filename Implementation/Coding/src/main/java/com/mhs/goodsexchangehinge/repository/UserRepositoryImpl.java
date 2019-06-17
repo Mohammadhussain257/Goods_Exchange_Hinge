@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mhs.goodsexchangehinge.model.ProfilePic;
 import com.mhs.goodsexchangehinge.model.User;
 import com.mhs.goodsexchangehinge.util.HibernateUtil;
 
@@ -66,6 +67,11 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User changePasswordByEmail(String email) {
 		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, email);
+	}
+
+	@Override
+	public void saveProfilePic(ProfilePic profilePic) {
+		HibernateUtil.getSession(sessionFactory).save(profilePic);
 	}
 
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- include header page -->
 <%@ include file="../shared/header.jsp"%>
@@ -13,8 +15,9 @@
 						class="rounded-circle img-fluid" alt="Responsive image">
 				</div>
 				<div class="mt-4">
-					<form action="uploadProfileimage" method="post"
-						enctype="multipart/form-data">
+					<form
+						action="uploadProfileimage?${_csrf.parameterName}=${_csrf.token}"
+						method="post" enctype="multipart/form-data">
 						<div class="d-flex justify-content-center">
 							<div class="input-group col-lg-6 col-md-12">
 								<div class="input-group-prepend">
@@ -34,8 +37,6 @@
 							class="btn btn-rounded btn blue-gradient mt-4">
 							<span>UPLOAD</span>
 						</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
 					</form>
 				</div>
 				<hr class="danger-color-dark md" />
@@ -67,7 +68,7 @@
 									<p class="uppercase font-weight-bold">First Name</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${user.firstName}">
+											value="${user.firstName}"></input>
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -77,7 +78,7 @@
 									<p class="uppercase font-weight-bold">Last Name</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${user.lastName}">
+											value="${user.lastName}"></input>
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -93,7 +94,7 @@
 									<p class="uppercase font-weight-bold">Gender</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${user.gender}">
+											value="${user.gender}"></input>
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -103,7 +104,7 @@
 									<p class="uppercase font-weight-bold">Date of Birth</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${user.dob}">
+											value="${user.dob}"></input>
 									</div>
 								</div>
 								<!-- Grid column -->
@@ -119,11 +120,10 @@
 									<p class="uppercase font-weight-bold">Username</p>
 									<div class="md-form mb-0">
 										<input type="text" readonly class="form-control"
-											value="${user.username}">
+											value="${user.username}"></input>
 									</div>
 								</div>
 								<!-- Grid column -->
-
 							</div>
 							<!-- Grid row -->
 						</form>
@@ -153,4 +153,3 @@
 	<!-- include footer page -->
 	<%@ include file="../shared/footer.jsp"%>
 </div>
-
