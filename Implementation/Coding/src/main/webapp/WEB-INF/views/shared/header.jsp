@@ -97,6 +97,7 @@
 	<!--Data table JavaScript -->
 	<script type="text/javascript"
 		src="resources/bootstrap/js/addons/datatables.min.js"></script>
+	<script type="text/javascript" src="resources/bootstrap/js/custome.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#dtBasicExample').DataTable();

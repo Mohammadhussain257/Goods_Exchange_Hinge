@@ -1,10 +1,13 @@
 package com.mhs.goodsexchangehinge.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ProfilePic {
@@ -12,7 +15,8 @@ public class ProfilePic {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int imageId;
 	private String image_url;
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 
 	public int getImageId() {

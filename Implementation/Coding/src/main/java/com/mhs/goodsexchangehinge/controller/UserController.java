@@ -3,8 +3,6 @@ package com.mhs.goodsexchangehinge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -53,17 +51,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/uploadProfileimage", method = RequestMethod.POST)
-	public String uploadProfileImage(@ModelAttribute User user, @RequestParam("image") CommonsMultipartFile file,
-			HttpSession session, Model model) {
+	public String uploadProfileImage(@ModelAttribute User user, @ModelAttribute ProfilePic profilePic,
+			@RequestParam("image") CommonsMultipartFile file, Model model) {
 		String imageUrl = "";
-		user = (User) session.getAttribute("userModel");
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
-			ProfilePic profilePic = new ProfilePic();
 			profilePic.setImage_url(imageUrl);
-			profilePic.setUser(user);
+				profilePic.setUser(user);
+			List<ProfilePic> pictures = new ArrayList<>();
+			pictures.add(profilePic);
+			userService.saveProfilePic(profilePic);
 		}
-
 		return "redirect:/getProfile?userId=" + user.getUserId();
 	}
 
@@ -104,8 +102,6 @@ public class UserController {
 	public String manageProduct(@ModelAttribute User user) {
 		return "Products/manageProduct";
 	}
-	
-	
 
 	@ModelAttribute
 	public Model getGenderList(Model model) {
