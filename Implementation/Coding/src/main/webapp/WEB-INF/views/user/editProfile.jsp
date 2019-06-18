@@ -145,47 +145,64 @@
 					<div class="col-lg-4">
 
 						<div class="card-body contact text-center h-100 mt-4">
-
+							<c:if test="${not empty passwordChange}">
+								<div class="alert alert-success" role="alert">${passwordChange}</div>
+							</c:if>
 							<h5 class="mt-4 text-center text-secondary mt-4">
 								<i class="far fa-edit"></i>Change password
 							</h5>
 							<!-- Form Model -->
-							<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center deep-purple lighten-4">
-        <h4 class="modal-title w-100 font-weight-bold">Change Your Password</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="password" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Old Password</label>
-        </div>
-        <div class="md-form mb-5">
-          <input type="email" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">New Password</label>
-        </div>
+							<form action="change_password" method="post">
+								<div class="modal fade" id="modalRegisterForm" tabindex="-1"
+									role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header text-center deep-purple lighten-4">
+												<c:if test="${not empty errormsg}">
+													<div class="alert alert-danger" role="alert">${errormsg}</div>
+												</c:if>
+												<h4 class="modal-title w-100 font-weight-bold">Change
+													Your Password</h4>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body mx-3">
+												<div class="md-form mb-5">
+													<input type="password" id="orangeForm-name"
+														class="form-control validate" name="oldPassword">
+													<label data-error="wrong" data-success="right"
+														for="orangeForm-name">Old Password</label>
+												</div>
+												<div class="md-form mb-5">
+													<input type="email" id="orangeForm-email"
+														class="form-control validate" name="newPassword">
+													<label data-error="wrong" data-success="right"
+														for="orangeForm-email">New Password</label>
+												</div>
 
-        <div class="md-form mb-4">
-          <input type="password" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Confirm Password</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-warning">Change</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="text-center">
-  <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Change Your Password</a>
-</div>
+												<div class="md-form mb-4">
+													<input type="password" id="orangeForm-pass"
+														class="form-control validate" name="confirmPassword">
+													<label data-error="wrong" data-success="right"
+														for="orangeForm-pass">Confirm Password</label>
+												</div>
+											</div>
+											<div class="modal-footer d-flex justify-content-center">
+												<button class="btn btn-warning">Change</button>
+											</div>
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+										</div>
+									</div>
+								</div>
+							</form>
+							<div class="text-center">
+								<a href="" class="btn btn-primary btn-rounded mb-4"
+									data-toggle="modal" data-target="#modalRegisterForm">Change
+									Your Password</a>
+							</div>
 
 							<!-- Form Model -->
 							<hr class="hr-light my-4 mt-4">
