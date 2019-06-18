@@ -56,10 +56,9 @@ public class UserController {
 		String imageUrl = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
+			user.setProfilePic(profilePic);
 			profilePic.setImage_url(imageUrl);
 			profilePic.setUser(user);
-			List<ProfilePic> pictures = new ArrayList<>();
-			pictures.add(profilePic);
 			userService.saveProfilePic(profilePic);
 		}
 		return "redirect:/getProfile?userId=" + user.getUserId();

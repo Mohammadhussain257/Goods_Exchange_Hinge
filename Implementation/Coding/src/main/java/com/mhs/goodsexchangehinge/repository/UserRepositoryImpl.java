@@ -71,7 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public void saveProfilePic(ProfilePic profilePic) {
-		HibernateUtil.getSession(sessionFactory).save(profilePic);
+		HibernateUtil.getSession(sessionFactory).merge(profilePic);
 	}
 
 }
