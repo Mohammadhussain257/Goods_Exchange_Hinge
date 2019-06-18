@@ -57,7 +57,7 @@ public class UserController {
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
 			profilePic.setImage_url(imageUrl);
-				profilePic.setUser(user);
+			profilePic.setUser(user);
 			List<ProfilePic> pictures = new ArrayList<>();
 			pictures.add(profilePic);
 			userService.saveProfilePic(profilePic);
@@ -91,11 +91,18 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/change_password", method = RequestMethod.POST)
-	public String changePassword(@ModelAttribute User user, Model model) {
-		if (user != null) {
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
+	public String changePassword(@RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword, @RequestParam("error") String error,
+			@ModelAttribute User user, Model model) {
+		if (error != null) {
+			model.addAttribute("errormsg", "Wrong old password");
 		}
-		return "redirect:/getProfile";
+		if (passwordEncoder.matches(oldPassword, user.getPassword())) {
+			user.setPassword(newPassword);
+			userService.changePasswordByUserId(user.getUserId());
+			model.addAttribute("passwordChange", "Password change successfully");
+		}
+		return "redirect:/editForm";
 	}
 
 	@RequestMapping(value = "/manageProduct", method = RequestMethod.GET)

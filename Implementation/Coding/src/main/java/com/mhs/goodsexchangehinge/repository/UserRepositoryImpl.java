@@ -61,7 +61,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User changePasswordByUserId(int userId) {
-		return (User) HibernateUtil.getSession(sessionFactory).find(User.class, userId);
+		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, userId);
 	}
 
 	@Override
