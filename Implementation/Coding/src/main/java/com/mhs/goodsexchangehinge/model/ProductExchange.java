@@ -7,16 +7,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class ProductExchange {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productExcId;
+	@NotEmpty(message = "Please enter produt name")
 	private String productName;
+	@NotEmpty(message = "Please enter produt value")
+	@Pattern(regexp = "[^0-9]*", message = "Invalid product value")
 	private Double productValue;
+	@NotEmpty(message = "Please enter what your exchange open for")
 	private String exchangeFor;
+	@NotEmpty(message = "Please select date")
+	@Past(message = "Date should be in present")
+	@Future(message = "Date must not be in future")
 	private Date date;
+	@NotEmpty(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
 	@OneToOne
@@ -85,5 +98,5 @@ public class ProductExchange {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 }

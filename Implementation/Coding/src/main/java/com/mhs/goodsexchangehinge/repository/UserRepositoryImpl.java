@@ -74,4 +74,11 @@ public class UserRepositoryImpl implements UserRepository {
 		HibernateUtil.getSession(sessionFactory).merge(profilePic);
 	}
 
+	@Override
+	public String getPassword(String password) {
+		@SuppressWarnings("deprecation")
+		Criteria criteria = HibernateUtil.getSession(sessionFactory).createCriteria(User.class);
+		return (String) criteria.add(Restrictions.eq("password", password)).uniqueResult();
+	}
+
 }

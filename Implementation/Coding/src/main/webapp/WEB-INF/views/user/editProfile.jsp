@@ -176,7 +176,7 @@
 														for="orangeForm-name">Old Password</label>
 												</div>
 												<div class="md-form mb-5">
-													<input type="email" id="orangeForm-email"
+													<input type="password" id="orangeForm-email"
 														class="form-control validate" name="newPassword">
 													<label data-error="wrong" data-success="right"
 														for="orangeForm-email">New Password</label>

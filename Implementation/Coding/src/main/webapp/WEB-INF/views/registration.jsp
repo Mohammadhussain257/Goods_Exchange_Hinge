@@ -27,36 +27,51 @@
 							<div class="form-row mb-4">
 								<div class="col">
 									<!-- First name -->
+									<form:errors path="firstName"
+										class="form-control text-danger"></form:errors>
 									<form:input type="text" id="defaultRegisterFormFirstName"
 										class="form-control" placeholder="First name" path="firstName"></form:input>
 								</div>
 								<div class="col">
 									<!-- Last name -->
+									<form:errors path="lastName"
+										class="form-control text-danger"></form:errors>
 									<form:input type="text" id="defaultRegisterFormLastName"
 										class="form-control" placeholder="Last name" path="lastName"></form:input>
 								</div>
 							</div>
 							<!-- Date of birth-->
+							<form:errors path="dob"
+										class="form-control text-danger"></form:errors>
 							<small id="defaultRegisterFormdob"
+							
 								class="form-text text-muted mb-4">Choose your birth date</small>
 							<form:input type="date" id="defaultRegisterFormdob"
 								class="form-control mb-4" path="dob"></form:input>
-								<!-- gneder-->
+							<!-- gneder-->
 							<small id="defaultRegisterFormgender"
 								class="form-text text-muted mb-4">Choose your gender</small>
-							<form:radiobuttons id="defaultRegisterFormgender"
-								class="mb-4" path="gender" items="${genderList}"/>
+							<form:radiobuttons id="defaultRegisterFormgender" class="mb-4"
+								path="gender" items="${genderList}" />
 
 							<!-- E-mail -->
+							<form:errors path="email"
+										class="form-control text-danger"></form:errors>
 							<form:input type="email" id="defaultRegisterFormEmail"
 								class="form-control mb-4" placeholder="E-mail" path="email"></form:input>
-								<!-- address -->
+							<!-- address -->
+							<form:errors path="address"
+										class="form-control text-danger"></form:errors>
 							<form:input type="text" id="defaultRegisterFormaddress"
 								class="form-control mb-4" placeholder="Address" path="address"></form:input>
-								<!-- username -->
+							<!-- username -->
+							<form:errors path="username"
+										class="form-control text-danger"></form:errors>
 							<form:input type="text" id="defaultRegisterFormusername"
 								class="form-control mb-4" placeholder="username" path="username"></form:input>
 							<!-- Password -->
+							<form:errors path="password"
+										class="form-control text-danger"></form:errors>
 							<form:input type="password" id="defaultRegisterFormPassword"
 								class="form-control" placeholder="Password" path="password"
 								aria-describedby="defaultRegisterFormPasswordHelpBlock"></form:input>
@@ -65,15 +80,17 @@
 								and 1 digit </small>
 
 							<!-- Confirm Password -->
-							<form:input type="password" id="defaultRegisterFormConfirmPassword"
-								class="form-control" placeholder="Confirm Password" path=""
+							<form:input type="password"
+								id="defaultRegisterFormConfirmPassword" class="form-control"
+								placeholder="Confirm Password" path=""
 								aria-describedby="defaultRegisterFormPasswordHelpBlock"></form:input>
 							<small id="defaultRegisterFormPasswordHelpBlock"
 								class="form-text text-muted mb-4"> </small>
 
 							<!-- Phone number -->
 							<form:input type="text" id="defaultRegisterPhonePassword"
-								class="form-control" placeholder="Phone number" path="phoneNumber"
+								class="form-control" placeholder="Phone number"
+								path="phoneNumber"
 								aria-describedby="defaultRegisterFormPhoneHelpBlock"></form:input>
 							<small id="defaultRegisterFormPhoneHelpBlock"
 								class="form-text text-muted mb-4"> </small>
