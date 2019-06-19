@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -32,7 +33,8 @@ public class ProductExchange {
 	@NotEmpty(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 
 	public int getProductExcId() {
