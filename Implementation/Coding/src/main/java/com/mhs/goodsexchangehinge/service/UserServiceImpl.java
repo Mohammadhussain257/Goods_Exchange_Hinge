@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
 		userRepository.saveProfilePic(profilePic);
 	}
 
+	@Override
+	public String getPassword(String password) {
+		return userRepository.getPassword(password);
+	}
+
 }

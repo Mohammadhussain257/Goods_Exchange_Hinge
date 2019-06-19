@@ -19,6 +19,8 @@ public interface UserRepository {
 	public List<User> getAllUserList();
 
 	public User findByUsername(String username);
+	
+	public String getPassword(String password);
 
 	public User changePasswordByUserId(int userId);
 

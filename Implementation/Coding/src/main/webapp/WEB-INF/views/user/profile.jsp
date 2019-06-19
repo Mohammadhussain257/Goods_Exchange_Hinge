@@ -15,9 +15,8 @@
 						class="rounded-circle img-fluid" alt="Responsive image">
 				</div>
 				<div class="mt-4">
-					<form
-						action="uploadProfileimage?${_csrf.parameterName}=${_csrf.token}"
-						method="post" enctype="multipart/form-data">
+					<form action="uploadProfileimage?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}" method="post"
+						enctype="multipart/form-data">
 						<div class="d-flex justify-content-center">
 							<div class="input-group col-lg-6 col-md-12">
 								<div class="input-group-prepend">

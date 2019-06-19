@@ -3,10 +3,13 @@ package com.mhs.goodsexchangehinge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +32,10 @@ public class UserController {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "/save_user", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute User user, Model model) {
+	public String saveUser(@ModelAttribute @Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "redirect:/getRegisterForm";
+		}
 		if (user != null) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setRole(Role.getRoleUser());
@@ -51,8 +57,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/uploadProfileimage", method = RequestMethod.POST)
-	public String uploadProfileImage(@ModelAttribute User user, @ModelAttribute ProfilePic profilePic,
-			@RequestParam("image") CommonsMultipartFile file, Model model) {
+	public String uploadProfileImage(@RequestParam int userId, @ModelAttribute User user,
+			@ModelAttribute ProfilePic profilePic, @RequestParam("image") CommonsMultipartFile file, Model model) {
+		User uId = userService.getUserById(userId);
 		String imageUrl = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
@@ -61,7 +68,8 @@ public class UserController {
 			profilePic.setUser(user);
 			userService.saveProfilePic(profilePic);
 		}
-		return "redirect:/getProfile?userId=" + user.getUserId();
+
+		return "redirect:/getProfile?userId=" + uId.getUserId();
 	}
 
 	@RequestMapping(value = "/editForm", method = RequestMethod.GET)
@@ -91,10 +99,11 @@ public class UserController {
 
 	@RequestMapping(value = "/change_password", method = RequestMethod.POST)
 	public String changePassword(@RequestParam("oldPassword") String oldPassword,
-			@RequestParam("newPassword") String newPassword, @RequestParam("error") String error,
-			@ModelAttribute User user, Model model) {
-		if (error != null) {
+			@RequestParam("newPassword") String newPassword, @ModelAttribute User user, Model model) {
+		String pass = userService.getPassword(passwordEncoder.encode(oldPassword));
+		if (pass == null) {
 			model.addAttribute("errormsg", "Wrong old password");
+			return "redirect:/editForm";
 		}
 		if (passwordEncoder.matches(oldPassword, user.getPassword())) {
 			user.setPassword(newPassword);
