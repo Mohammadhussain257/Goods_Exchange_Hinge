@@ -113,11 +113,7 @@ public class UserController {
 		return "redirect:/editForm";
 	}
 
-	@RequestMapping(value = "/manageProduct", method = RequestMethod.GET)
-	public String manageProduct(@ModelAttribute User user) {
-		return "Products/manageProduct";
-	}
-
+	
 	@ModelAttribute
 	public Model getGenderList(Model model) {
 		List<String> genderList = new ArrayList<>();

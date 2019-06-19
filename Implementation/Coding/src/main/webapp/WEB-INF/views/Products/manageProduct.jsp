@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class=" light-green lighten-5">
 	<%@ include file="../shared/header.jsp"%>
 	<div class="container">
@@ -6,20 +7,23 @@
 		<div class="row">
 			<div class="col-md-6">
 				<!-- form  -->
-				<form class="text-center border border-light p-5 indigo lighten-5">
+				<form
+					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}"
+					method="post" enctype="multipart/form-data"
+					class="text-center border border-light p-5 indigo lighten-5">
 
 					<p class="h4 mb-4 text-secondary">Add Product To Get Exchange</p>
 
 					<!-- Product Name -->
-					<input type="text" class="form-control mb-4"
-						placeholder="Product Name">
+					<input type="text" name="productName" class="form-control mb-4"
+						placeholder="Product Name" />
 
 					<!-- Product Value -->
-					<input type="number" class="form-control mb-4"
-						placeholder="Product Value">
+					<input type="number" name="productValue" class="form-control mb-4"
+						placeholder="Product Value" />
 
 					<!-- Subject -->
-					<label>Product Category</label> <select
+					<label>Product Category</label> <select name=""
 						class="browser-default custom-select mb-4">
 						<option value="" disabled>Choose Category</option>
 						<option value="1" selected>Arts</option>
@@ -29,18 +33,18 @@
 					</select>
 
 					<!-- Date -->
-					<input type="date" class="form-control mb-4"
-						placeholder="Product Value">
+					<input type="date" name="date" class="form-control mb-4"
+						placeholder="Product Value" />
 					<!-- product open for -->
 					<div class="form-group">
-						<textarea class="form-control rounded-0"
+						<textarea name="exchangeFor" class="form-control rounded-0"
 							id="exampleFormControlTextarea2" rows="3"
 							placeholder="Explain what you want to exchange with"></textarea>
 					</div>
 
 					<!-- product description -->
 					<div class="form-group">
-						<textarea class="form-control rounded-0"
+						<textarea name="description" class="form-control rounded-0"
 							id="exampleFormControlTextarea2" rows="3"
 							placeholder="Product Description"></textarea>
 					</div>
@@ -50,8 +54,8 @@
 							<span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
 						</div>
 						<div class="custom-file">
-							<input type="file" class="custom-file-input"
-								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+							<input type="file" name="image" class="custom-file-input"
+								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
 							<label class="custom-file-label" for="inputGroupFile01">Product
 								Cover</label>
 						</div>
@@ -105,7 +109,7 @@
 							<span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
 						</div>
 						<div class="custom-file">
-							<input type="file" class="custom-file-input"
+							<input type="file" name="image" class="custom-file-input"
 								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
 							<label class="custom-file-label" for="inputGroupFile01">Product
 								Cover</label>

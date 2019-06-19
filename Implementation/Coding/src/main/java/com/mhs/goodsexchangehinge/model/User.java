@@ -38,8 +38,8 @@ public class User {
 	private String gender;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	/*@Past(message = "Date of birth must be in past")
-	@NotEmpty(message = "Please select date of birth")*/
+	@Past(message = "Date of birth must be in past")
+	@NotEmpty(message = "Please select date of birth")
 	private Date dob;
 	@Email(message = "Invalid email type")
 	@NotEmpty(message = "Please enter your email address")
@@ -63,6 +63,8 @@ public class User {
 	private ProfilePic profilePic;
 	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+	private List<ProductExchange> productExchangelist = new ArrayList<>();
 
 	public int getUserId() {
 		return userId;
@@ -174,6 +176,14 @@ public class User {
 
 	public void setLogin(List<Login> login) {
 		this.login = login;
+	}
+
+	public List<ProductExchange> getProductExchangelist() {
+		return productExchangelist;
+	}
+
+	public void setProductExchangelist(List<ProductExchange> productExchangelist) {
+		this.productExchangelist = productExchangelist;
 	}
 
 }
