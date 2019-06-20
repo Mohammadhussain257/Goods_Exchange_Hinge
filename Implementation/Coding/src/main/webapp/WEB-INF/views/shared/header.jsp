@@ -68,7 +68,7 @@
 						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img
-							src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+							src="show_profile_pic?=${userModel.userId}"
 							class="rounded-circle z-depth-0" alt="avatar image" height="35">
 					</a>
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"

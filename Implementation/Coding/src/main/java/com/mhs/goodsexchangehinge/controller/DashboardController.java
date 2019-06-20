@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mhs.goodsexchangehinge.model.Category;
 import com.mhs.goodsexchangehinge.service.CategoryService;
@@ -43,6 +44,18 @@ public class DashboardController {
 			categoryService.saveCategory(category);
 		}
 		return "dashboard/category/addCategories";
+	}
+
+	@RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
+	public String deleteCategory(@RequestParam int id) {
+		categoryService.deleteCategory(id);
+		return "redirect:/category";
+	}
+
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+	public String deleteUser(@RequestParam int userId) {
+		userService.deleteUserInfo(userId);
+		return "redirect:/user_list";
 	}
 
 }

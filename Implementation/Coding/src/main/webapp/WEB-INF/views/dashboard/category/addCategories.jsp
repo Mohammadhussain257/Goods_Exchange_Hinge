@@ -60,13 +60,11 @@
 									<tr>
 										<td>${category.id}</td>
 										<td>${category.categoryName}</td>
-										<td><span><button type="button"
-													class="btn btn-info btn-rounded  btn-sm my-0">
-													<i class="fas fa-pencil-alt"></i>
-												</button></span> <span><button type="button"
-													class="btn btn-danger btn-rounded btn-sm my-0">
-													<i class="fas fa-trash-alt"></i>
-												</button></span></td>
+										<td><span><a type="button"
+												href="deleteCategory?id=${category.id}"
+												class="btn btn-danger btn-rounded btn-sm my-0"> <i
+													class="fas fa-trash-alt"></i>
+											</a></span></td>
 									</tr>
 								</c:forEach>
 							</tbody>

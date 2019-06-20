@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class=" light-green lighten-5">
 	<%@ include file="../shared/header.jsp"%>
 	<div class="container">
@@ -23,13 +24,12 @@
 						placeholder="Product Value" />
 
 					<!-- Subject -->
-					<label>Product Category</label> <select name=""
+					<label>Product Category</label> <select name="category"
 						class="browser-default custom-select mb-4">
-						<option value="" disabled>Choose Category</option>
-						<option value="1" selected>Arts</option>
-						<option value="2">Automotive</option>
-						<option value="3">Books</option>
-						<option value="4">Electronics</option>
+						<option value="" disabled selected>Choose Category</option>
+						<c:forEach items="${categoryList}" var="catList">
+							<option value="${catList.id}">${catList.categoryName}</option>
+						</c:forEach>
 					</select>
 
 					<!-- Date -->

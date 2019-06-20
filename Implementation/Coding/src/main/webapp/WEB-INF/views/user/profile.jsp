@@ -11,12 +11,13 @@
 			<div class="col-sm col-xl col-md col-lg text-center">
 				<div class="avatar mx-auto col-lg-4 col-md-12 mb-4 mt-2">
 					<img style="width: 50%; height: 50%"
-						src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+						src="show_profile_pic?userId=${user.userId}"
 						class="rounded-circle img-fluid" alt="Responsive image">
 				</div>
 				<div class="mt-4">
-					<form action="uploadProfileimage?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}" method="post"
-						enctype="multipart/form-data">
+					<form
+						action="uploadProfileimage?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}"
+						method="post" enctype="multipart/form-data">
 						<div class="d-flex justify-content-center">
 							<div class="input-group col-lg-6 col-md-12">
 								<div class="input-group-prepend">
