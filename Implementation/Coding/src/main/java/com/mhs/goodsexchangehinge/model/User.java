@@ -63,8 +63,10 @@ public class User {
 	private ProfilePic profilePic;
 	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<>();
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	private List<ProductExchange> productExchangelist = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	private List<ProductRequest> productRequestlist = new ArrayList<>();
 
 	public int getUserId() {
 		return userId;
@@ -184,6 +186,14 @@ public class User {
 
 	public void setProductExchangelist(List<ProductExchange> productExchangelist) {
 		this.productExchangelist = productExchangelist;
+	}
+
+	public List<ProductRequest> getProductRequestlist() {
+		return productRequestlist;
+	}
+
+	public void setProductRequestlist(List<ProductRequest> productRequestlist) {
+		this.productRequestlist = productRequestlist;
 	}
 
 }

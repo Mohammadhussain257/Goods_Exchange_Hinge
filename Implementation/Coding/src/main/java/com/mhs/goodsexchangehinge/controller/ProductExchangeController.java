@@ -1,12 +1,10 @@
 package com.mhs.goodsexchangehinge.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +14,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.mhs.goodsexchangehinge.model.ProductExchange;
 import com.mhs.goodsexchangehinge.model.User;
+import com.mhs.goodsexchangehinge.service.CategoryService;
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.UserService;
 import com.mhs.goodsexchangehinge.util.ImageUtil;
@@ -27,6 +26,8 @@ public class ProductExchangeController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CategoryService categoryService;
 
 	@RequestMapping(value = "/manageProduct", method = RequestMethod.GET)
 	public String manageProduct() {
@@ -38,14 +39,13 @@ public class ProductExchangeController {
 			@ModelAttribute @Valid ProductExchange productExchange, @RequestParam("image") CommonsMultipartFile file,
 			BindingResult result) {
 		User uId = userService.getUserById(userId);
-		List<ProductExchange> productExchangeList = new ArrayList<>();
 		String imageUrl = "";
 		if (productExchange != null) {
 			if (!file.getOriginalFilename().isEmpty()) {
 				imageUrl = productExchangeService.getProductById(productExchange.getProductExcId()).getImageUrl();
 			} else {
 				imageUrl = ImageUtil.writeImageToFile(file);
-				user.setProductExchangelist(productExchangeList);
+				user.getProductExchangelist().add(productExchange);
 				productExchange.setImageUrl(imageUrl);
 				productExchange.setUser(user);
 				productExchangeService.saveProduct(productExchange);
@@ -53,6 +53,13 @@ public class ProductExchangeController {
 
 		}
 		return "redirect:/manageProduct?userId=" + uId.getUserId();
+	}
+
+	@RequestMapping(value="categoryList",method = RequestMethod.GET)
+	public String getCategoryList(Model model) {
+		model.addAttribute("categoryList", categoryService.getAllCategory());
+		return "redirect:/categoryList";
+
 	}
 
 }

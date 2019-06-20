@@ -3,6 +3,8 @@ package com.mhs.goodsexchangehinge.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import com.mhs.goodsexchangehinge.constant.Role;
 import com.mhs.goodsexchangehinge.constant.Status;
 import com.mhs.goodsexchangehinge.model.ProfilePic;
 import com.mhs.goodsexchangehinge.model.User;
+import com.mhs.goodsexchangehinge.service.ShowProfilePicService;
 import com.mhs.goodsexchangehinge.service.UserService;
 import com.mhs.goodsexchangehinge.util.ImageUtil;
 
@@ -27,7 +30,8 @@ import com.mhs.goodsexchangehinge.util.ImageUtil;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private ShowProfilePicService showProfilePicService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -113,7 +117,12 @@ public class UserController {
 		return "redirect:/editForm";
 	}
 
-	
+	@RequestMapping(value = "/show_profile_pic", method = RequestMethod.GET)
+	public void showProfilePic(@RequestParam int userId, HttpServletRequest request, HttpServletResponse response) {
+		String imageUrl = showProfilePicService.showProfilePicById(userId).getImage_url();
+		ImageUtil.showImage(userId, imageUrl, request, response);
+	}
+
 	@ModelAttribute
 	public Model getGenderList(Model model) {
 		List<String> genderList = new ArrayList<>();

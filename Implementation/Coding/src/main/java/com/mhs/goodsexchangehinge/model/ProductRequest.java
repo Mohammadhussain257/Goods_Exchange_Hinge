@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Past;
@@ -32,6 +33,8 @@ public class ProductRequest {
 	private String imageUrl;
 	@OneToOne
 	private User user;
+	@ManyToOne
+	private Category category;
 
 	public int getProductReqId() {
 		return productReqId;

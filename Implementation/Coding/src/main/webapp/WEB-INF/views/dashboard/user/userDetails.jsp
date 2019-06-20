@@ -45,10 +45,20 @@
 										<td><c:out value="${user.address}" /></td>
 										<td><c:out value="${user.username}" /></td>
 										<td><c:out value="${user.phoneNumber}" /></td>
-										<td><span><button type="button"
-													class="btn btn-danger btn-rounded btn-sm my-0 mt-1">
-													<i class="fas fa-trash-alt"></i>
-												</button></span></td>
+										<c:if test="${user.role eq 'ADMIN'}">
+											<td><span><button type="button"
+														class="btn btn-danger btn-rounded btn-sm my-0 mt-1"
+														disabled>
+														<i class="fas fa-trash-alt"></i>
+													</button></span></td>
+										</c:if>
+										<c:if test="${user.role eq 'USER'}">
+											<td><span><a type="button"
+													href="deleteUser?userId=${user.userId}"
+													class="btn btn-danger btn-rounded btn-sm my-0 mt-1"> <i
+														class="fas fa-trash-alt"></i>
+												</a></span></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</tbody>

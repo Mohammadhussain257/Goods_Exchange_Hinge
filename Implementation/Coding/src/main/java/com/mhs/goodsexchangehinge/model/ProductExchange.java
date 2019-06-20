@@ -12,6 +12,8 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -35,7 +37,11 @@ public class ProductExchange {
 	private String imageUrl;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private User user;
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Category category;
 
 	public int getProductExcId() {
 		return productExcId;
@@ -99,6 +105,14 @@ public class ProductExchange {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }
