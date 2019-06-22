@@ -20,7 +20,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -29,40 +29,39 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
-	@NotEmpty(message = "Please enter First Name")
-	@Size(min = 3, max = 50, message = "First name character too long should be in between {min} to {max}")
+	@NotBlank(message = "Please enter First Name")
+	@Size(min = 3, max = 50, message = "First name character too long should be in between {min} to {max} character")
 	private String firstName;
-	@NotEmpty(message = "Please enter Last Name")
-	@Size(min = 1, max = 50, message = "Last name character too long should be in between {min} to {max}")
+	@NotBlank(message = "Please enter Last Name")
+	@Size(min = 1, max = 50, message = "Last name character too long should be in between {min} to {max} character")
 	private String lastName;
 	private String gender;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Past(message = "Date of birth must be in past")
-	@NotEmpty(message = "Please select date of birth")
+	@Past(message = "Invalid date of birth, must be in past")
 	private Date dob;
 	@Email(message = "Invalid email type")
-	@NotEmpty(message = "Please enter your email address")
+	@NotBlank(message = "Please enter your email address")
 	private String email;
-	@NotEmpty(message = "Please enter your address")
-	@Size(min = 1, max = 100, message = "Too long address should be in between {min} to {max}")
+	@NotBlank(message = "Please enter your address")
+	@Size(min = 1, max = 100, message = "Too long address should be in between {min} to {max} character")
 	private String address;
-	@NotEmpty(message = "Please enter your username")
-	@Size(min = 1, max = 50, message = "Username character too long should be in between {min} to {max}")
+	@NotBlank(message = "Please enter your username")
+	@Size(min = 1, max = 50, message = "Username character too long should be in between {min} to {max} character")
 	private String username;
-	@NotEmpty(message = "Please enter your password")
-	@Size(min = 1, max = 50, message = "password character too long should be in between {min} to {max}")
+	@NotBlank(message = "Please enter your password")
+	@Size(min = 5,message = "password length should be {min} character")
+	/*@Pattern(regexp = "(^[a-zA-Z0-9]+$)", message = "password should be alphanumberic")*/
 	private String password;
-	@NotEmpty(message = "Please enter phone number")
-	@Pattern(regexp = "[^0-9]*", message = "Invalid phone number")
-	@Size(min = 9, max = 15, message = "Invalid phone number ")
+	@NotBlank(message = "Please enter phone number")
+	@Pattern(regexp = "(^$|[0-9]{10})", message = "Invalid phone number")
 	private String phoneNumber;
 	private Boolean isActive;
 	private String role;
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
 	private ProfilePic profilePic;
 	@OneToMany(mappedBy = "user")
-	private List<Login> login = new ArrayList<>();
+	private List<Login> login = new ArrayList<Login>();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	private List<ProductExchange> productExchangelist = new ArrayList<>();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)

@@ -2,6 +2,7 @@ package com.mhs.goodsexchangehinge.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class ProductRequest {
 	private String imageUrl;
 	@OneToOne
 	private User user;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Category category;
 
 	public int getProductReqId() {

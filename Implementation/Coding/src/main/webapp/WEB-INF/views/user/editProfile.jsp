@@ -181,13 +181,6 @@
 													<label data-error="wrong" data-success="right"
 														for="orangeForm-email">New Password</label>
 												</div>
-
-												<div class="md-form mb-4">
-													<input type="password" id="orangeForm-pass"
-														class="form-control validate" name="confirmPassword">
-													<label data-error="wrong" data-success="right"
-														for="orangeForm-pass">Confirm Password</label>
-												</div>
 											</div>
 											<div class="modal-footer d-flex justify-content-center">
 												<button class="btn btn-warning">Change</button>

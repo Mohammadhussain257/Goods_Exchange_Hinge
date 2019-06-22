@@ -66,7 +66,9 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User changePasswordByEmail(String email) {
-		return (User) HibernateUtil.getSession(sessionFactory).get(User.class, email);
+		@SuppressWarnings("deprecation")
+		Criteria criteria = HibernateUtil.getSession(sessionFactory).createCriteria(User.class);
+		return (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
 	}
 
 	@Override
@@ -79,6 +81,13 @@ public class UserRepositoryImpl implements UserRepository {
 		@SuppressWarnings("deprecation")
 		Criteria criteria = HibernateUtil.getSession(sessionFactory).createCriteria(User.class);
 		return (String) criteria.add(Restrictions.eq("password", password)).uniqueResult();
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		@SuppressWarnings("deprecation")
+		Criteria criteria = HibernateUtil.getSession(sessionFactory).createCriteria(User.class);
+		return (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
 	}
 
 }

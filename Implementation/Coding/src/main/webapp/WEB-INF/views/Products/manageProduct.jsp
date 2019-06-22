@@ -9,11 +9,11 @@
 			<div class="col-md-6">
 				<!-- form  -->
 				<form
-					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}"
+					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}&id=${selectedCategoryid}"
 					method="post" enctype="multipart/form-data"
 					class="text-center border border-light p-5 indigo lighten-5">
 
-					<p class="h4 mb-4 text-secondary">Add Product To Get Exchange</p>
+					<p class="h4 mb-4 text-secondary">Add Product To Exchange</p>
 
 					<!-- Product Name -->
 					<input type="text" name="productName" class="form-control mb-4"
@@ -25,13 +25,12 @@
 
 					<!-- Subject -->
 					<label>Product Category</label> <select name="category"
-						class="browser-default custom-select mb-4">
+						class="browser-default custom-select mb-4 category">
 						<option value="" disabled selected>Choose Category</option>
 						<c:forEach items="${categoryList}" var="catList">
 							<option value="${catList.id}">${catList.categoryName}</option>
 						</c:forEach>
 					</select>
-
 					<!-- Date -->
 					<input type="date" name="date" class="form-control mb-4"
 						placeholder="Product Value" />
@@ -86,11 +85,10 @@
 					<!-- Subject -->
 					<label>Product Category</label> <select
 						class="browser-default custom-select mb-4">
-						<option value="" disabled>Choose Category</option>
-						<option value="1" selected>Arts</option>
-						<option value="2">Automotive</option>
-						<option value="3">Books</option>
-						<option value="4">Electronics</option>
+						<option value="" disabled selected>Choose Category</option>
+						<c:forEach items="${categoryList}" var="catList">
+							<option value="${catList.id}">${catList.categoryName}</option>
+						</c:forEach>
 					</select>
 
 					<!-- Date -->
@@ -236,3 +234,11 @@
 	</div>
 	<%@ include file="../shared/footer.jsp"%>
 </div>
+<script>
+	$(document).ready(function() {
+		$("select.category").change(function() {
+			var selectedCategoryid = $(this).children("option:selected").val();
+			alert("You have selected the country - " + selectedCategoryid);
+		});
+	});
+</script>

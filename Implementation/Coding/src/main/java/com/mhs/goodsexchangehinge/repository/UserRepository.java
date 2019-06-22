@@ -11,7 +11,7 @@ public interface UserRepository {
 	public void updateUser(User user);
 
 	public void deleteUserInfo(int userId);
-	
+
 	public void saveProfilePic(ProfilePic profilePic);
 
 	public User getUserById(int userId);
@@ -19,7 +19,9 @@ public interface UserRepository {
 	public List<User> getAllUserList();
 
 	public User findByUsername(String username);
-	
+
+	public User findUserByEmail(String email);
+
 	public String getPassword(String password);
 
 	public User changePasswordByUserId(int userId);
