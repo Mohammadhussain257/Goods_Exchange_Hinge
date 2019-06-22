@@ -36,17 +36,28 @@ public class UserController {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping(value = "/save_user", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute @Valid User user, BindingResult result) {
+	public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result,
+			@RequestParam("username") String username, @RequestParam("email") String email, Model model) {
 		if (result.hasErrors()) {
-			return "redirect:/getRegisterForm";
+			return "registration";
+		}
+
+		if ((userService.findByUsername(username) != null)) {
+			model.addAttribute("usernameExist", "Username already exist");
+			return "registration";
+		}
+		if ((userService.findUserByEmail(email) != null)) {
+			model.addAttribute("emailExist", "Email address already exist");
+			return "registration";
 		}
 		if (user != null) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setRole(Role.getRoleUser());
 			user.setIsActive(Status.getActiveUser());
 			userService.saveUser(user);
+			model.addAttribute("success", "Successfully registered please login to continue");
 		}
-		return "home";
+		return "registration";
 	}
 
 	@RequestMapping(value = "/getRegisterForm", method = RequestMethod.GET)
@@ -111,7 +122,7 @@ public class UserController {
 		}
 		if (passwordEncoder.matches(oldPassword, user.getPassword())) {
 			user.setPassword(newPassword);
-			userService.changePasswordByUserId(user.getUserId());
+			userService.updateUser(user);
 			model.addAttribute("passwordChange", "Password change successfully");
 		}
 		return "redirect:/editForm";

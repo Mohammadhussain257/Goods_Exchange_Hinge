@@ -20,6 +20,8 @@ public interface UserService {
 
 	public User findByUsername(String username);
 
+	public User findUserByEmail(String email);
+
 	public String getPassword(String password);
 
 	public User changePasswordByUserId(int userId);
