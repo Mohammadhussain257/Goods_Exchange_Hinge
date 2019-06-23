@@ -20,7 +20,7 @@ import com.mhs.goodsexchangehinge.service.UserService;
 import com.mhs.goodsexchangehinge.util.ImageUtil;
 
 @Controller
-public class ProductExchangeController {
+public class ManageProductController {
 	@Autowired
 	private ProductExchangeService productExchangeService;
 
@@ -54,4 +54,17 @@ public class ProductExchangeController {
 		return "redirect:/manageProduct?userId=" + uId.getUserId();
 	}
 
+	@RequestMapping(value = "/exchangeProductDetails", method = RequestMethod.GET)
+	public String exchangeProductDetails() {
+		return "Products/getExchangeProduct";
+	}
+
+	@RequestMapping(value = "/requestProductDetails", method = RequestMethod.GET)
+	public String requestProductDetails() {
+		return "Products/getRequestProduct";
+	}
+	@RequestMapping(value = "/homePagetProductDetails", method = RequestMethod.GET)
+	public String homePageProductDetails() {
+		return "Products/homePageProuctDetails";
+	}
 }

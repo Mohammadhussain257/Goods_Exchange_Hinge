@@ -126,10 +126,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6">
+				<h6 class="text-center font-weight-bold text-info">Exchange
+					Product Details</h6>
 				<div class="table-responsive">
-					<h6 class="text-center font-weight-bold text-info">Exchange
-						Product Details</h6>
-					<table id="dtBasicExample" class="table table-striped">
+					<table id="dtBasicExample" class="table table-striped ">
 						<thead>
 							<tr>
 								<th>Product Name</th>
@@ -143,25 +143,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>TATA Indigo</td>
-								<td>$10000</td>
-								<td>Automotive</td>
-								<td>2019-06-14</td>
-								<td>Open for all type of TATA Product</td>
-								<td>Product Description hare</td>
-								<td>Product Cover</td>
-							</tr>
-
-							<tr>
-								<td>TATA Indigo</td>
-								<td>$10000</td>
-								<td>Automotive</td>
-								<td>2019-06-14</td>
-								<td>Open for all type of TATA Product</td>
-								<td>Product Description hare</td>
-								<td>Product Cover</td>
-							</tr>
 
 						</tbody>
 						<tfoot>
@@ -180,11 +161,10 @@
 				</div>
 			</div>
 			<div class="col-md-6">
+				<h6 class="text-center font-weight-bold text-info">Request
+					Product Details</h6>
 				<div class="table-responsive">
-					<h6 class="text-center font-weight-bold text-info">Request
-						Product Details</h6>
-					<table id="dtBasicExample" id="dtBasicExample"
-						class="table table-striped">
+					<table id="dtBasicExample" class="table table-striped ">
 						<thead>
 							<tr>
 								<th>Product Name</th>
@@ -197,23 +177,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>TATA Indigo</td>
-								<td>$10000</td>
-								<td>Automotive</td>
-								<td>2019-06-14</td>
-								<td>Product Description hare</td>
-								<td>Product Cover</td>
-							</tr>
-							<tr>
-
-								<td>TATA Indigo</td>
-								<td>$10000</td>
-								<td>Automotive</td>
-								<td>2019-06-14</td>
-								<td>Product Description hare</td>
-								<td>Product Cover</td>
-							</tr>
 
 						</tbody>
 						<tfoot>
@@ -231,8 +194,8 @@
 				</div>
 			</div>
 		</div>
+		<%@ include file="../shared/footer.jsp"%>
 	</div>
-	<%@ include file="../shared/footer.jsp"%>
 </div>
 <!-- <script>
 	$(document).ready(function() {

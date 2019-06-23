@@ -49,7 +49,7 @@
 								<p class="dark-grey-text">Value: $1000-$2000</p>
 								<p class="dark-grey-text">Added by: User Name</p>
 							</div>
-							<a href="#">See More<i class="fas fa-angle-double-right"></i></a>
+							<a href="exchangeProductDetails">See More<i class="fas fa-angle-double-right"></i></a>
 						</div>
 
 					</div>
