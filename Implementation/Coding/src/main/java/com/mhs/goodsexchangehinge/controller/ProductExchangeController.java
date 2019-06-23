@@ -37,16 +37,15 @@ public class ProductExchangeController {
 	}
 
 	@RequestMapping(value = "/save_product", method = RequestMethod.POST)
-	public String saveProduct(@RequestParam int userId, @RequestParam int id, @ModelAttribute User user,
-			@ModelAttribute @Valid ProductExchange productExchange, @RequestParam("image") CommonsMultipartFile file,
-			@ModelAttribute Category category) {
+	public String saveProduct(@RequestParam int userId, @RequestParam("category") int id, @ModelAttribute User user,
+			@ModelAttribute @Valid ProductExchange productExchange, @RequestParam("image") CommonsMultipartFile file) {
 		User uId = userService.getUserById(userId);
-		Category catid = categoryService.getCategoryById(id);
+		Category category = categoryService.getCategoryById(id);
 		String imageUrl = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
 			user.getProductExchangelist().add(productExchange);
-			category.setId(catid.getId());
+			category.setId(category.getId());
 			productExchange.setImageUrl(imageUrl);
 			productExchange.setCategory(category);
 			productExchange.setUser(user);

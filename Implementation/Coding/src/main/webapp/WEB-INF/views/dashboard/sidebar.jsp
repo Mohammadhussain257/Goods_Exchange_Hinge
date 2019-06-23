@@ -10,7 +10,8 @@
 	<!-- Side bar -->
 	<div class="sidebar-fixed">
 
-		<a class="logo-wrapper waves-effect">LOGO</a>
+		<a class="logo-wrapper waves-effect"><img class="img-fluid" style="width:40%; height:40%;" alt="website logo"
+			src="resources/image/logo.png"></a>
 		<div class="list-group list-group-flush  indigo lighten-5">
 			<a href="#" class="list-group-item active waves-effect"> <i
 				class="fas fa-chart-pie mr-3"></i>DASHBOARD

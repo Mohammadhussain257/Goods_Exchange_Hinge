@@ -9,7 +9,7 @@
 			<div class="col-md-6">
 				<!-- form  -->
 				<form
-					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}&id=${selectedCategoryid}"
+					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}&id=${category}"
 					method="post" enctype="multipart/form-data"
 					class="text-center border border-light p-5 indigo lighten-5">
 
@@ -234,11 +234,11 @@
 	</div>
 	<%@ include file="../shared/footer.jsp"%>
 </div>
-<script>
+<!-- <script>
 	$(document).ready(function() {
 		$("select.category").change(function() {
 			var selectedCategoryid = $(this).children("option:selected").val();
 			alert("You have selected the country - " + selectedCategoryid);
 		});
 	});
-</script>
+</script> -->
