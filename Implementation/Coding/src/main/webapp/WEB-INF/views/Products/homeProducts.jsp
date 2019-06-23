@@ -54,7 +54,7 @@
 							<!--Modal: modalSocial-->
 						</c:when>
 						<c:otherwise>
-							<a href="#">See More<i class="fas fa-angle-double-right"></i></a>
+							<a href="homePagetProductDetails">See More<i class="fas fa-angle-double-right"></i></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
