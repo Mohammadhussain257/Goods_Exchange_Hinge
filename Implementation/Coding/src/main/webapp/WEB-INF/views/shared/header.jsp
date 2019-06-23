@@ -42,7 +42,8 @@
 				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
 				<li class="nav-item"><a class="nav-link" href="request">REQUEST</a></li>
 				<security:authorize access="hasAuthority('USER')">
-				<li class="nav-item"><a class="nav-link" href="manageProduct?userId=${userModel.userId}">MANAGE PRODUCT</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manageProduct?userId=${userModel.userId}">MANAGE PRODUCT</a></li>
 				</security:authorize>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
@@ -51,7 +52,7 @@
 					<div class="dropdown-menu dropdown-default"
 						aria-labelledby="navbarDropdownMenuLink-333">
 						<a class="dropdown-item" href="forum">FORUM</a> <a
-							class="dropdown-item" href="#">USER GUIDE</a>
+							class="dropdown-item" href="help">HELP</a>
 					</div></li>
 				<!--  allow access to anonymous user end-->
 
@@ -67,15 +68,15 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img
-							src="show_profile_pic?userId=${userModel.userId}"
+							<img src="show_profile_pic?userId=${userModel.userId}"
 							class="rounded-circle z-depth-0" alt="avatar image" height="35">
 					</a>
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">
 							<a class="dropdown-item text-center" href="#">${userModel.username}</a>
-							<a class="dropdown-item text-center" href="getProfile?userId=${userModel.userId}">Profile</a>
 							<a class="dropdown-item text-center"
+								href="getProfile?userId=${userModel.userId}">Profile</a> <a
+								class="dropdown-item text-center"
 								href="editForm?userId=${userModel.userId}">Setting</a> <a
 								class="dropdown-item text-center" href="logout-user">Logout</a>
 						</div></li>

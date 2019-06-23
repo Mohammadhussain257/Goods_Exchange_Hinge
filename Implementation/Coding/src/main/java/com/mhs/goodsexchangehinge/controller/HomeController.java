@@ -77,14 +77,20 @@ public class HomeController {
 	public String getForum() {
 		return "forum";
 	}
-	
+
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
 	public String getPrivacyPolicy() {
 		return "privacyPolicy";
 	}
+
 	@RequestMapping(value = "/termOfUse", method = RequestMethod.GET)
 	public String getTermOfUser() {
 		return "termOfUse";
+	}
+
+	@RequestMapping(value = "/help", method = RequestMethod.GET)
+	public String helpPage() {
+		return "help";
 	}
 
 	@RequestMapping(value = "/access-denied")
