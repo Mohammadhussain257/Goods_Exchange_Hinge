@@ -11,7 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -19,25 +22,24 @@ public class ProductExchange {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productExcId;
-	// @NotEmpty(message = "Please enter produt name")
+	@NotEmpty(message = "Please enter produt name")
 	private String productName;
-	// @NotNull(message = "Please enter produt value")
+	@NotNull(message = "Please enter produt value")
 	private Double productValue;
-	// @NotEmpty(message = "Please enter what your exchange open for")
+	@NotEmpty(message = "Please enter what your exchange open for")
 	private String exchangeFor;
-	// @NotEmpty(message = "Please select date")
-	// @Past(message = "Date should be in present")
-	// @Future(message = "Date must not be in future")
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@CreationTimestamp()
 	private Date date;
-	// @NotEmpty(message = "Please write description for product")
+	@NotEmpty(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private User user;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
 
 	public int getProductExcId() {

@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -54,7 +53,6 @@ public class User {
 	/*@Pattern(regexp = "(^[a-zA-Z0-9]+$)", message = "password should be alphanumberic")*/
 	private String password;
 	@NotBlank(message = "Please enter phone number")
-	@Pattern(regexp = "(^$|[0-9]{10})", message = "Invalid phone number")
 	private String phoneNumber;
 	private Boolean isActive;
 	private String role;

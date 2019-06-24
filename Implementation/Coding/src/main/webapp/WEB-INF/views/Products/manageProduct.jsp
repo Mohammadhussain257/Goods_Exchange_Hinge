@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class=" light-green lighten-5">
 	<%@ include file="../shared/header.jsp"%>
@@ -8,23 +9,27 @@
 		<div class="row">
 			<div class="col-md-6">
 				<!-- form  -->
-				<form
-					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}&id=${category}"
+				<form:form
+					action="save_product?${_csrf.parameterName}=${_csrf.token}&userId=${user.userId}&category=${catList.id}"
 					method="post" enctype="multipart/form-data"
-					class="text-center border border-light p-5 indigo lighten-5">
+					class="text-center border border-light p-5 indigo lighten-5"
+					modelAttribute="productExchange">
 
 					<p class="h4 mb-4 text-secondary">Add Product To Exchange</p>
 
 					<!-- Product Name -->
-					<input type="text" name="productName" class="form-control mb-4"
-						placeholder="Product Name" />
+					<form:errors path="productName" cssClass="text-warning" />
+					<form:input type="text" path="productName"
+						class="form-control mb-4" placeholder="Product Name" />
 
 					<!-- Product Value -->
-					<input type="number" name="productValue" class="form-control mb-4"
-						placeholder="Product Value" />
+					<form:errors path="productValue" cssClass="text-warning" />
+					<form:input type="number" path="productValue"
+						class="form-control mb-4" placeholder="Product Value" />
 
-					<!-- Subject -->
-					<label>Product Category</label> <select name="category"
+					<!-- Category -->
+					<label>Product Category</label>
+					<select name="category"
 						class="browser-default custom-select mb-4 category">
 						<option value="" disabled selected>Choose Category</option>
 						<c:forEach items="${categoryList}" var="catList">
@@ -32,20 +37,23 @@
 						</c:forEach>
 					</select>
 					<!-- Date -->
-					<input type="date" name="date" class="form-control mb-4"
+					<form:errors path="date" cssClass="text-warning" />
+					<form:input type="date" path="date" class="form-control mb-4"
 						placeholder="Product Value" />
 					<!-- product open for -->
 					<div class="form-group">
-						<textarea name="exchangeFor" class="form-control rounded-0"
+						<form:errors path="exchangeFor" cssClass="text-warning" />
+						<form:textarea path="exchangeFor" class="form-control rounded-0"
 							id="exampleFormControlTextarea2" rows="3"
-							placeholder="Explain what you want to exchange with"></textarea>
+							placeholder="Explain what you want to exchange with"></form:textarea>
 					</div>
 
 					<!-- product description -->
 					<div class="form-group">
-						<textarea name="description" class="form-control rounded-0"
+						<form:errors path="description" cssClass="text-warning" />
+						<form:textarea path="description" class="form-control rounded-0"
 							id="exampleFormControlTextarea2" rows="3"
-							placeholder="Product Description"></textarea>
+							placeholder="Product Description"></form:textarea>
 					</div>
 
 					<div class="input-group">
@@ -54,16 +62,15 @@
 						</div>
 						<div class="custom-file">
 							<input type="file" name="image" class="custom-file-input"
-								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-							<label class="custom-file-label" for="inputGroupFile01">Product
-								Cover</label>
+								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+								required /> <label class="custom-file-label"
+								for="inputGroupFile01">Product Cover</label>
 						</div>
 					</div>
-
 					<!-- Send button -->
 					<button class="btn btn-info btn-block mt-4" type="submit">UPLOAD</button>
 
-				</form>
+				</form:form>
 				<!--  form  -->
 			</div>
 
@@ -82,9 +89,9 @@
 					<input type="number" class="form-control mb-4"
 						placeholder="Product Value">
 
-					<!-- Subject -->
-					<label>Product Category</label> <select
-						class="browser-default custom-select mb-4">
+					<!-- Category -->
+					<label>Product Category</label> <select name="category"
+						class="browser-default custom-select mb-4 category">
 						<option value="" disabled selected>Choose Category</option>
 						<c:forEach items="${categoryList}" var="catList">
 							<option value="${catList.id}">${catList.categoryName}</option>
