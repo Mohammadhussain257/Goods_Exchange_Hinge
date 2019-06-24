@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,17 +31,22 @@ public class ManageProductController {
 	private CategoryService categoryService;
 
 	@RequestMapping(value = "/manageProduct", method = RequestMethod.GET)
-	public String manageProduct(@RequestParam int userId, Model model) {
+	public String manageProduct(@RequestParam int userId, Model model,
+			@ModelAttribute ProductExchange productExchange) {
 		model.addAttribute("categoryList", categoryService.getAllCategory());
 		model.addAttribute("user", userService.getUserById(userId));
 		return "Products/manageProduct";
 	}
 
 	@RequestMapping(value = "/save_product", method = RequestMethod.POST)
-	public String saveProduct(@RequestParam int userId, @RequestParam("category") int id, @ModelAttribute User user,
-			@ModelAttribute @Valid ProductExchange productExchange, @RequestParam("image") CommonsMultipartFile file) {
-		User uId = userService.getUserById(userId);
-		Category category = categoryService.getCategoryById(id);
+	public String saveProduct(@RequestParam int userId, @RequestParam("category") Category category,
+			@Valid @ModelAttribute ProductExchange productExchange, BindingResult result,
+			@RequestParam("image") CommonsMultipartFile file) {
+		User user = userService.getUserById(userId);
+		if (result.hasErrors()) {
+			return "Products/manageProduct";
+		}
+		category = categoryService.getCategoryById(category.getId());
 		String imageUrl = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
@@ -51,7 +57,7 @@ public class ManageProductController {
 			productExchange.setUser(user);
 			productExchangeService.saveProduct(productExchange);
 		}
-		return "redirect:/manageProduct?userId=" + uId.getUserId();
+		return "redirect:/manageProduct?userId=" + user.getUserId();
 	}
 
 	@RequestMapping(value = "/exchangeProductDetails", method = RequestMethod.GET)
@@ -63,6 +69,7 @@ public class ManageProductController {
 	public String requestProductDetails() {
 		return "Products/getRequestProduct";
 	}
+
 	@RequestMapping(value = "/homePagetProductDetails", method = RequestMethod.GET)
 	public String homePageProductDetails() {
 		return "Products/homePageProuctDetails";

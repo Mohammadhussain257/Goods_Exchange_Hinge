@@ -22,7 +22,7 @@ public interface UserRepository {
 
 	public User findUserByEmail(String email);
 
-	public String getPassword(String password);
+	public User getPassword(String password);
 
 	public User changePasswordByUserId(int userId);
 

@@ -113,19 +113,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/change_password", method = RequestMethod.POST)
-	public String changePassword(@RequestParam("oldPassword") String oldPassword,
-			@RequestParam("newPassword") String newPassword, @ModelAttribute User user, Model model) {
-		String pass = userService.getPassword(passwordEncoder.encode(oldPassword));
-		if (pass == null) {
-			model.addAttribute("errormsg", "Wrong old password");
-			return "redirect:/editForm";
-		}
+	public String changePassword(@RequestParam("userId") int userId, @RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword, @ModelAttribute("user") User user, Model model) {
+		user = userService.getUserById(userId);
 		if (passwordEncoder.matches(oldPassword, user.getPassword())) {
-			user.setPassword(newPassword);
+			user.setPassword(passwordEncoder.encode(newPassword));
 			userService.updateUser(user);
 			model.addAttribute("passwordChange", "Password change successfully");
+		} else {
+			model.addAttribute("errormsg", "Wrong old password");
 		}
-		return "redirect:/editForm";
+		return "user/editProfile";
 	}
 
 	@RequestMapping(value = "/show_profile_pic", method = RequestMethod.GET)
