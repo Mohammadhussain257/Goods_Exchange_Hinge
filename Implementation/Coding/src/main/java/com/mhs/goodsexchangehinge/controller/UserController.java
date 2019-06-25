@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,20 +36,24 @@ public class UserController {
 	private ShowProfilePicService showProfilePicService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@RequestMapping(value = "/save_user", method = RequestMethod.POST)
 	public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result,
 			@RequestParam("username") String username, @RequestParam("email") String email, Model model) {
 		if (result.hasErrors()) {
+			logger.debug("error while saving user");
 			return "registration";
 		}
 
 		if ((userService.findByUsername(username) != null)) {
 			model.addAttribute("usernameExist", "Username already exist");
+			logger.info("username already exist in database");
 			return "registration";
 		}
 		if ((userService.findUserByEmail(email) != null)) {
 			model.addAttribute("emailExist", "Email address already exist");
+			logger.info("same email cannot use to make multiple account");
 			return "registration";
 		}
 		if (user != null) {
@@ -56,18 +62,21 @@ public class UserController {
 			user.setIsActive(Status.getActiveUser());
 			userService.saveUser(user);
 			model.addAttribute("success", "Successfully registered please login to continue");
+			logger.info("successfully register user");
 		}
 		return "registration";
 	}
 
 	@RequestMapping(value = "/getRegisterForm", method = RequestMethod.GET)
 	public String getRegisterForm(@ModelAttribute User user) {
+		logger.info("getRegistrationForm call");
 		return "registration";
 	}
 
 	@RequestMapping(value = "/getProfile", method = RequestMethod.GET)
 	public String getUserProfile(@RequestParam int userId, Model model) {
 		model.addAttribute("user", userService.getUserById(userId));
+		logger.info("getProfile call");
 		return "user/profile";
 	}
 
@@ -78,10 +87,12 @@ public class UserController {
 		String imageUrl = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			imageUrl = ImageUtil.writeImageToFile(file);
+			logger.debug("Error in getting file name" + imageUrl);
 			user.setProfilePic(profilePic);
 			profilePic.setImage_url(imageUrl);
 			profilePic.setUser(user);
 			userService.saveProfilePic(profilePic);
+			logger.info("image uploaded successfully");
 		}
 
 		return "redirect:/getProfile?userId=" + uId.getUserId();
@@ -90,6 +101,7 @@ public class UserController {
 	@RequestMapping(value = "/editForm", method = RequestMethod.GET)
 	public String editProfile(@RequestParam int userId, Model model) {
 		model.addAttribute("user", userService.getUserById(userId));
+		logger.info("editForm call");
 		return "user/editProfile";
 	}
 
@@ -97,6 +109,7 @@ public class UserController {
 	public String updateUserDetail(@ModelAttribute User user, Model model) {
 		User u = userService.getUserById(user.getUserId());
 		if (user != null) {
+			logger.debug("Getting user info :" + user);
 			u.setRole(Role.getRoleUser());
 			u.setIsActive(Status.getActiveUser());
 			u.setFirstName(user.getFirstName());
@@ -108,6 +121,7 @@ public class UserController {
 			userService.updateUser(u);
 			model.addAttribute("user", u);
 			model.addAttribute("updatemsg", "Info updated successfully");
+			logger.info("user updated successfully");
 		}
 		return "user/profile";
 	}
@@ -120,8 +134,10 @@ public class UserController {
 			user.setPassword(passwordEncoder.encode(newPassword));
 			userService.updateUser(user);
 			model.addAttribute("passwordChange", "Password change successfully");
+			logger.info("password change");
 		} else {
 			model.addAttribute("errormsg", "Wrong old password");
+			logger.info("error in chaning password");
 		}
 		return "user/editProfile";
 	}
@@ -130,6 +146,7 @@ public class UserController {
 	public void showProfilePic(@RequestParam int userId, HttpServletRequest request, HttpServletResponse response) {
 		String imageUrl = showProfilePicService.showProfilePicById(userId).getImage_url();
 		ImageUtil.showImage(userId, imageUrl, request, response);
+		logger.info("get image url and show image :" + imageUrl);
 	}
 
 	@ModelAttribute

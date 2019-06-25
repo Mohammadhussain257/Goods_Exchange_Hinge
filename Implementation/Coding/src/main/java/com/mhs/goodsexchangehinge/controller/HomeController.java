@@ -1,7 +1,5 @@
 package com.mhs.goodsexchangehinge.controller;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,20 +19,20 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class HomeController {
-
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/", "/get_home" }, method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home() {
+		logger.info("Welcome home!");
 		return "home";
 	}
 
 	@RequestMapping(value = "/register")
 	public String getRegister() {
+		logger.info("get registration page call");
 		return "registration";
 	}
 
@@ -47,7 +45,7 @@ public class HomeController {
 		if (logout != null) {
 			model.addAttribute("logout", "You have Successfully Logged Out");
 		}
-
+		logger.info("login successfully");
 		return "login";
 	}
 
@@ -60,36 +58,43 @@ public class HomeController {
 			// security context
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
+		logger.info("logout successfully");
 		return "redirect:/login?logout";
 	}
 
 	@RequestMapping(value = "/exchange", method = RequestMethod.GET)
 	public String exchangeProduct() {
+		logger.info("exchange page call");
 		return "Products/Exchange";
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.GET)
 	public String requestProduct() {
+		logger.info("request page call");
 		return "Products/Reqeust";
 	}
 
 	@RequestMapping(value = "/forum", method = RequestMethod.GET)
 	public String getForum() {
+		logger.info("forum page call");
 		return "forum";
 	}
 
 	@RequestMapping(value = "/privacyPolicy", method = RequestMethod.GET)
 	public String getPrivacyPolicy() {
+		logger.info("privacy policy page call");
 		return "privacyPolicy";
 	}
 
 	@RequestMapping(value = "/termOfUse", method = RequestMethod.GET)
 	public String getTermOfUser() {
+		logger.info("term of uses page call");
 		return "termOfUse";
 	}
 
 	@RequestMapping(value = "/help", method = RequestMethod.GET)
 	public String helpPage() {
+		logger.info("help page call");
 		return "help";
 	}
 
@@ -99,6 +104,7 @@ public class HomeController {
 		model.addAttribute("errorTitle", "Oppss!! Your access is refuse due to security reason.");
 		model.addAttribute("errorDescription",
 				"You are not authorized to visit this page! Please go back to the previous page to continue browsing.");
+		logger.info("access denied");
 		return "403";
 	}
 
