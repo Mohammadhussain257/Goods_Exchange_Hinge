@@ -42,8 +42,17 @@
 				<li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
 				<li class="nav-item"><a class="nav-link" href="request">REQUEST</a></li>
 				<security:authorize access="hasAuthority('USER')">
-					<li class="nav-item"><a class="nav-link"
-						href="manageProduct?userId=${userModel.userId}">MANAGE PRODUCT</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MANAGE
+							PRODUCT </a>
+						<div class="dropdown-menu dropdown-default"
+							aria-labelledby="navbarDropdownMenuLink-333">
+							<a href="ProductExchange?userId=${userModel.userId}"
+								class="dropdown-item" href="forum">PRODUCT EXCHANGE</a> <a
+								href="ProductRequest?userId=${userModel.userId}"
+								class="dropdown-item" href="help">PRODUCT REQUEST</a>
+						</div></li>
 				</security:authorize>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"

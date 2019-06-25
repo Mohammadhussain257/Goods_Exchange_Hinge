@@ -4,16 +4,20 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class ProductRequest {
@@ -22,19 +26,20 @@ public class ProductRequest {
 	private int productReqId;
 	@NotEmpty(message = "Please enter produt name")
 	private String productName;
-	@NotEmpty(message = "Please enter produt value")
-	@Pattern(regexp = "[^0-9]*", message = "Invalid product value")
+	@NotNull(message = "Please enter produt value")
+	@Min(value=0, message = "Invalid product value")
 	private Double productValue;
-	@NotEmpty(message = "Please select date")
-	@Past(message = "Date should be in present")
-	@Future(message = "Date must not be in future")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "select date")
+	@CreationTimestamp
 	private Date date;
 	@NotEmpty(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private User user;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
 
 	public int getProductReqId() {
@@ -91,6 +96,14 @@ public class ProductRequest {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }
