@@ -18,7 +18,7 @@ public class ProductRequestRepositoryImpl implements ProductRequestRepository {
 
 	@Override
 	public void saveProduct(ProductRequest productRequest) {
-		HibernateUtil.getSession(sessionFactory).save(productRequest);
+		HibernateUtil.getSession(sessionFactory).merge(productRequest);
 	}
 
 	@Override

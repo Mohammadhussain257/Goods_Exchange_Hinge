@@ -15,9 +15,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,6 +41,7 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past(message = "Invalid date of birth, must be in past")
+	@NotNull(message = "choose date of birth")
 	private Date dob;
 	@Email(message = "Invalid email type")
 	@NotBlank(message = "Please enter your email address")
@@ -49,20 +53,25 @@ public class User {
 	@Size(min = 1, max = 50, message = "Username character too long should be in between {min} to {max} character")
 	private String username;
 	@NotBlank(message = "Please enter your password")
-	@Size(min = 5,message = "password length should be {min} character")
-	/*@Pattern(regexp = "(^[a-zA-Z0-9]+$)", message = "password should be alphanumberic")*/
+	@Size(min = 5, message = "password length should be {min} character")
+	/*
+	 * @Pattern(regexp = "(^[a-zA-Z0-9]+$)", message =
+	 * "password should be alphanumberic")
+	 */
 	private String password;
 	@NotBlank(message = "Please enter phone number")
 	private String phoneNumber;
 	private Boolean isActive;
 	private String role;
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	private ProfilePic profilePic;
 	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<Login>();
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ProductExchange> productExchangelist = new ArrayList<>();
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ProductRequest> productRequestlist = new ArrayList<>();
 
 	public int getUserId() {

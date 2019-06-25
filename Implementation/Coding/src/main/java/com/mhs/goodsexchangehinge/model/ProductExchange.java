@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -22,21 +24,22 @@ public class ProductExchange {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productExcId;
-	@NotEmpty(message = "Please enter produt name")
+	@NotBlank(message = "Please enter produt name")
 	private String productName;
 	@NotNull(message = "Please enter produt value")
+	@Min(value = 0, message = "invalid product value")
 	private Double productValue;
-	@NotEmpty(message = "Please enter what your exchange open for")
+	@NotBlank(message = "Please enter what your exchange open for")
 	private String exchangeFor;
-
+	@CreationTimestamp()
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@CreationTimestamp()
+	@NotNull(message = "select date")
 	private Date date;
-	@NotEmpty(message = "Please write description for product")
+	@NotBlank(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 	@ManyToOne(cascade = CascadeType.ALL)
