@@ -4,19 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotEmpty(message = "Cannot add empty category")
+	@Pattern(regexp = "(^[a-zA-Z]+$)", message = "Invalid category")
 	private String categoryName;
-
-	/*@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "category")
-	private List<ProductExchange> productExchange = new ArrayList<>();
-
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "category")
-	private List<ProductRequest> productRequest = new ArrayList<>();*/
 
 	public int getId() {
 		return id;
@@ -33,21 +32,4 @@ public class Category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-
-	/*public List<ProductExchange> getProductExchange() {
-		return productExchange;
-	}
-
-	public void setProductExchangen(List<ProductExchange> productExchange) {
-		this.productExchange = productExchange;
-	}
-
-	public List<ProductRequest> getProductRequest() {
-		return productRequest;
-	}
-
-	public void setProductRequest(List<ProductRequest> productRequest) {
-		this.productRequest = productRequest;
-	}*/
-
 }
