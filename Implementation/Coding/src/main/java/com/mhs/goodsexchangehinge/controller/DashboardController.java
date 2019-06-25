@@ -1,8 +1,13 @@
 package com.mhs.goodsexchangehinge.controller;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +19,7 @@ import com.mhs.goodsexchangehinge.service.UserService;
 
 @Controller
 public class DashboardController {
-
+	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 	@Autowired
 	private UserService userService;
 
@@ -39,9 +44,14 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "/addCategory", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute Category category) {
+	public String addCategory(@Valid @ModelAttribute("category") Category category, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			logger.info("error while adding category");
+			return "dashboard/category/addCategories";
+		}
 		if (category != null) {
 			categoryService.saveCategory(category);
+			logger.info("category added successfully");
 		}
 		return "dashboard/category/addCategories";
 	}

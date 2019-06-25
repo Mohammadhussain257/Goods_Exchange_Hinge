@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -26,11 +27,14 @@
 							<h3 class="text-center">Add Category</h3>
 						</div>
 						<hr>
-						<form action="addCategory" method="post">
+						<form:form action="addCategory" method="post"
+							modelAttribute="category">
 							<div class="form-group">
-								<label class="control-label">Category Name</label> <input
-									type="text" class="form-control" placeholder="eg:- Electronics"
-									name="categoryName"></input>
+
+								<label class="control-label">Category Name</label>
+								<form:errors path="categoryName" cssClass="text-warning" />
+								<input type="text" class="form-control"
+									placeholder="eg:- Electronics" name="categoryName" required></input>
 							</div>
 
 							<button type="submit" class="btn btn-lg btn-info btn-block">
@@ -39,7 +43,7 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 
-						</form>
+						</form:form>
 					</div>
 				</div>
 				<!-- MAIN CONTENT END-->
