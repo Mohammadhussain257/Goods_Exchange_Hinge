@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
@@ -39,7 +40,7 @@ public class ProductExchange {
 	@NotBlank(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 	@ManyToOne(cascade = CascadeType.ALL)

@@ -72,8 +72,11 @@
 
 			</div>
 			<div class="col-md-6">
-				<h6 class="text-center font-weight-bold text-info">Exchange
+				<h6 class="text-center font-weight-bold text-info">Request
 					Product Details</h6>
+				<c:if test="${not empty deletemgs}">
+					<div class="alert alert-success" role="alert">${deletemgs}</div>
+				</c:if>
 				<div class="table-responsive">
 					<c:if test="${not empty productRequestList}">
 						<table id="dtBasicExample" class="table table-striped ">
@@ -89,7 +92,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${ productRequestList}" var="prl">
+								<c:forEach items="${productRequestList}" var="prl">
 									<tr>
 										<td><c:out value="${prl.productReqId}" /></td>
 										<td><c:out value="${prl.productName}" /></td>
@@ -97,6 +100,14 @@
 										<td><c:out value="${prl.date}" /></td>
 										<td><c:out value="${prl.description}" /></td>
 										<td><c:out value="${prl.imageUrl}" /></td>
+										<td><span class="text-danger"><a
+												class="text-danger" data-toggle="tooltip"
+												data-placement="right" title="Delete"
+												href="delete_request_exchange?productReqId=${prl.productReqId}"><i
+													class="fas fa-trash fa-2x"></i></a></span> <span><a
+												data-toggle="tooltip" data-placement="right" title="Edit"
+												class="text-primary" href="#"><i
+													class="fas fa-edit fa-2x"></i></a></span></td>
 									</tr>
 
 								</c:forEach>
