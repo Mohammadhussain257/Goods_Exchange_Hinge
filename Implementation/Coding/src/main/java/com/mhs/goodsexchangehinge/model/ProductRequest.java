@@ -27,7 +27,7 @@ public class ProductRequest {
 	@NotEmpty(message = "Please enter produt name")
 	private String productName;
 	@NotNull(message = "Please enter produt value")
-	@Min(value=0, message = "Invalid product value")
+	@Min(value = 0, message = "Invalid product value")
 	private Double productValue;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -37,7 +37,7 @@ public class ProductRequest {
 	@NotEmpty(message = "Please write description for product")
 	private String description;
 	private String imageUrl;
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private User user;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;

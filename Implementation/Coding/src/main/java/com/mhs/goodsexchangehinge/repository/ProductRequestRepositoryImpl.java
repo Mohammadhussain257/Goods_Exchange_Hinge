@@ -2,13 +2,10 @@ package com.mhs.goodsexchangehinge.repository;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mhs.goodsexchangehinge.model.ProductExchange;
 import com.mhs.goodsexchangehinge.model.ProductRequest;
 import com.mhs.goodsexchangehinge.util.HibernateUtil;
 

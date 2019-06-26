@@ -86,7 +86,8 @@ public class ManageProductController {
 	}
 
 	@RequestMapping(value = "/requestProductDetails", method = RequestMethod.GET)
-	public String requestProductDetails() {
+	public String requestProductDetails(@RequestParam int userId, Model model) {
+		model.addAttribute("proudctExhangeList", productRequestService.getAllProductRequestListByUserId(userId));
 		return "Products/getRequestProduct";
 	}
 
@@ -100,11 +101,27 @@ public class ManageProductController {
 	}
 
 	@RequestMapping(value = "/ProductRequest", method = RequestMethod.GET)
-	public String getProductRequestePage(@RequestParam int userId,
+	public String getProductRequestePage(@RequestParam("userId") int userId,
 			@ModelAttribute("productRequest") ProductRequest productRequest, Model model) {
 		model.addAttribute("categoryList", categoryService.getAllCategory());
 		model.addAttribute("user", userService.getUserById(userId));
 		model.addAttribute("productRequestList", productRequestService.getAllProductRequestListByUserId(userId));
+		return "Products/ProductRequest";
+	}
+
+	@RequestMapping(value = "/delete_product_exchange", method = RequestMethod.GET)
+	public String deleteproductExchangeDetails(@ModelAttribute("productExchange") ProductExchange productExchange,
+			@RequestParam int productExcId, Model model) {
+		productExchangeService.deleteProduct(productExcId);
+		model.addAttribute("deletemgs", "Product deleted successfully");
+		return "Products/ProductExchange";
+	}
+
+	@RequestMapping(value = "/delete_request_exchange", method = RequestMethod.GET)
+	public String deleteproductRequestDetails(@ModelAttribute("productRequest") ProductRequest productRequest,
+			@RequestParam int productReqId, Model model) {
+		productRequestService.deleteProduct(productReqId);
+		model.addAttribute("deletemgs", "Product deleted successfully");
 		return "Products/ProductRequest";
 	}
 }

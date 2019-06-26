@@ -77,6 +77,9 @@
 			<div class="col-md-6">
 				<h6 class="text-center font-weight-bold text-info">Exchange
 					Product Details</h6>
+				<c:if test="${not empty deletemgs}">
+					<div class="alert alert-success" role="alert">${deletemgs}</div>
+				</c:if>
 				<div class="table-responsive">
 					<c:if test="${not empty proudctExhangeList}">
 						<table id="dtBasicExample" class="table table-striped ">
@@ -102,6 +105,13 @@
 										<td><c:out value="${pel.date}" /></td>
 										<td><c:out value="${pel.description}" /></td>
 										<td><c:out value="${pel.imageUrl}" /></td>
+										<td><span><a class="text-danger"
+												data-toggle="tooltip" data-placement="right" title="Delete"
+												href="delete_product_exchange?productExcId=${pel.productExcId}"><i
+													class="fas fa-trash fa-2x"></i></a></span> <span><a
+												class="text-primary" data-toggle="tooltip"
+												data-placement="right" title="Edit" href="#"><i
+													class="fas fa-edit fa-2x"></i></a></span></td>
 									</tr>
 								</c:forEach>
 							</tbody>
