@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mhs.goodsexchangehinge.model.ProductExchange;
 import com.mhs.goodsexchangehinge.model.ProductRequest;
 import com.mhs.goodsexchangehinge.util.HibernateUtil;
 
@@ -39,13 +40,12 @@ public class ProductRequestRepositoryImpl implements ProductRequestRepository {
 		return (ProductRequest) HibernateUtil.getSession(sessionFactory).get(ProductRequest.class, productReqId);
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<ProductRequest> getAllProductRequestListByUserId(int userId) {
-		CriteriaQuery<ProductRequest> criteriaQuery = HibernateUtil.getSession(sessionFactory).getCriteriaBuilder()
-				.createQuery(ProductRequest.class);
-		List<ProductRequest> productRequestList = HibernateUtil.getSession(sessionFactory).createQuery(criteriaQuery)
-				.getResultList();
-		return productRequestList;
+		List<ProductRequest> prlist = HibernateUtil.getSession(sessionFactory)
+				.createQuery("from ProductRequest p where p.user.userId=" + userId + " ").list();
+		return (List<ProductRequest>) prlist;
 	}
 
 }

@@ -78,35 +78,47 @@
 				<h6 class="text-center font-weight-bold text-info">Exchange
 					Product Details</h6>
 				<div class="table-responsive">
-					<table id="dtBasicExample" class="table table-striped ">
-						<thead>
-							<tr>
-								<th>Product Name</th>
-								<th>Product Value</th>
-								<th>Category</th>
-								<th>Date</th>
-								<th>Exchange Open</th>
-								<th>Description</th>
-								<th>ImageURL</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>Product Name</th>
-								<th>Product Value</th>
-								<th>Category</th>
-								<th>Date</th>
-								<th>Exchange Open</th>
-								<th>Description</th>
-								<th>ImageURL</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
-					</table>
+					<c:if test="${not empty proudctExhangeList}">
+						<table id="dtBasicExample" class="table table-striped ">
+							<thead>
+								<tr>
+									<th>S.N</th>
+									<th>Product Name</th>
+									<th>Product Value</th>
+									<th>Exchange Open</th>
+									<th>Date</th>
+									<th>Description</th>
+									<th>ImageURL</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${proudctExhangeList}" var="pel">
+									<tr>
+										<td><c:out value="${pel.productExcId}" /></td>
+										<td><c:out value="${pel.productName}" /></td>
+										<td><c:out value="${pel.productValue}" /></td>
+										<td><c:out value="${pel.exchangeFor}" /></td>
+										<td><c:out value="${pel.date}" /></td>
+										<td><c:out value="${pel.description}" /></td>
+										<td><c:out value="${pel.imageUrl}" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>S.N</th>
+									<th>Product Name</th>
+									<th>Product Value</th>
+									<th>Exchange Open</th>
+									<th>Date</th>
+									<th>Description</th>
+									<th>ImageURL</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 			</div>
 		</div>

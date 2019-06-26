@@ -80,7 +80,8 @@ public class ManageProductController {
 	}
 
 	@RequestMapping(value = "/exchangeProductDetails", method = RequestMethod.GET)
-	public String exchangeProductDetails() {
+	public String exchangeProductDetails(@RequestParam int userId, Model model) {
+		model.addAttribute("proudctExhangeList", productExchangeService.getAllProductExchangeListByUserId(userId));
 		return "Products/getExchangeProduct";
 	}
 
@@ -90,10 +91,11 @@ public class ManageProductController {
 	}
 
 	@RequestMapping(value = "/ProductExchange", method = RequestMethod.GET)
-	public String getProductExchangePage(@RequestParam int userId,
+	public String getProductExchangePage(@RequestParam("userId") int userId,
 			@ModelAttribute("productExchange") ProductExchange productExchange, Model model) {
 		model.addAttribute("categoryList", categoryService.getAllCategory());
 		model.addAttribute("user", userService.getUserById(userId));
+		model.addAttribute("proudctExhangeList", productExchangeService.getAllProductExchangeListByUserId(userId));
 		return "Products/ProductExchange";
 	}
 
@@ -102,6 +104,7 @@ public class ManageProductController {
 			@ModelAttribute("productRequest") ProductRequest productRequest, Model model) {
 		model.addAttribute("categoryList", categoryService.getAllCategory());
 		model.addAttribute("user", userService.getUserById(userId));
+		model.addAttribute("productRequestList", productRequestService.getAllProductRequestListByUserId(userId));
 		return "Products/ProductRequest";
 	}
 }
