@@ -75,33 +75,45 @@
 				<h6 class="text-center font-weight-bold text-info">Exchange
 					Product Details</h6>
 				<div class="table-responsive">
-					<table id="dtBasicExample" class="table table-striped ">
-						<thead>
-							<tr>
-								<th>Product Name</th>
-								<th>Product Value</th>
-								<th>Category</th>
-								<th>Date</th>
-								<th>Description</th>
-								<th>ImageURL</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
+					<c:if test="${not empty productRequestList}">
+						<table id="dtBasicExample" class="table table-striped ">
+							<thead>
+								<tr>
+									<th>S.N</th>
+									<th>Product Name</th>
+									<th>Product Value</th>
+									<th>Date</th>
+									<th>Description</th>
+									<th>ImageURL</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${ productRequestList}" var="prl">
+									<tr>
+										<td><c:out value="${prl.productReqId}" /></td>
+										<td><c:out value="${prl.productName}" /></td>
+										<td><c:out value="${prl.productValue}" /></td>
+										<td><c:out value="${prl.date}" /></td>
+										<td><c:out value="${prl.description}" /></td>
+										<td><c:out value="${prl.imageUrl}" /></td>
+									</tr>
 
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>Product Name</th>
-								<th>Product Value</th>
-								<th>Category</th>
-								<th>Date</th>
-								<th>Description</th>
-								<th>ImageURL</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
-					</table>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>S.N</th>
+									<th>Product Name</th>
+									<th>Product Value</th>
+									<th>Date</th>
+									<th>Description</th>
+									<th>ImageURL</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+						</table>
+					</c:if>
 				</div>
 			</div>
 		</div>

@@ -49,9 +49,9 @@
 						<div class="dropdown-menu dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">
 							<a href="ProductExchange?userId=${userModel.userId}"
-								class="dropdown-item" href="forum">PRODUCT EXCHANGE</a> <a
+								class="dropdown-item">PRODUCT EXCHANGE</a> <a
 								href="ProductRequest?userId=${userModel.userId}"
-								class="dropdown-item" href="help">PRODUCT REQUEST</a>
+								class="dropdown-item">PRODUCT REQUEST</a>
 						</div></li>
 				</security:authorize>
 				<li class="nav-item dropdown"><a
