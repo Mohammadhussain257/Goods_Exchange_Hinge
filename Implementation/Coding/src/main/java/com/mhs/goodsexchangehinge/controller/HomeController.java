@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.ProductRequestService;
-import com.mhs.goodsexchangehinge.util.ImageUtil;
 
 /**
  * Handles requests for the application home page.
@@ -41,22 +40,6 @@ public class HomeController {
 		model.addAttribute("productRequestList", productRequestService.getAllProductRequestList());
 		logger.info("Welcome home!");
 		return "home";
-	}
-
-	@RequestMapping(value = "/product_exhange_images", method = RequestMethod.GET)
-	public void displayProductExchangeImage(@RequestParam("productExcId") int productExcId, HttpServletRequest request,
-			HttpServletResponse response) {
-		String imageUrl = productExchangeService.getProductById(productExcId).getImageUrl();
-		ImageUtil.showImage(productExcId, imageUrl, request, response);
-		logger.info("get image url and show image :" + imageUrl);
-	}
-
-	@RequestMapping(value = "/product_request_images", method = RequestMethod.GET)
-	public void displayRequestImage(@RequestParam("productReqId") int productReqId, HttpServletRequest request,
-			HttpServletResponse response) {
-		String imageUrl = productRequestService.getProductById(productReqId).getImageUrl();
-		ImageUtil.showImage(productReqId, imageUrl, request, response);
-		logger.info("get image url and show image :" + imageUrl);
 	}
 
 	@RequestMapping(value = "/register")
@@ -89,18 +72,6 @@ public class HomeController {
 		}
 		logger.info("logout successfully");
 		return "redirect:/login?logout";
-	}
-
-	@RequestMapping(value = "/exchange", method = RequestMethod.GET)
-	public String exchangeProduct() {
-		logger.info("exchange page call");
-		return "Products/Exchange";
-	}
-
-	@RequestMapping(value = "/request", method = RequestMethod.GET)
-	public String requestProduct() {
-		logger.info("request page call");
-		return "Products/Reqeust";
 	}
 
 	@RequestMapping(value = "/forum", method = RequestMethod.GET)
