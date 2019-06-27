@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ImageUtil {
-	public static final String IMAGE_UPLOAD_PATH = "F:\\SavedFile\\";
+	public static final String IMAGE_UPLOAD_PATH = "F:/SavedFile/";
 	private static final int DEFAULT_BUFFER_SIZE = 2048;
 
 	public static String writeImageToFile(CommonsMultipartFile file) {
