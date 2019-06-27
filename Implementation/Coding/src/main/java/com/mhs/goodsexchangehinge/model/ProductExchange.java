@@ -28,7 +28,7 @@ public class ProductExchange {
 	@NotBlank(message = "Please enter produt name")
 	private String productName;
 	@NotNull(message = "Please enter produt value")
-	@Min(value = 0, message = "invalid product value")
+	@Min(value = 0, message = "Minimum value should be 0.0")
 	private Double productValue;
 	@NotBlank(message = "Please enter what your exchange open for")
 	private String exchangeFor;
@@ -41,7 +41,7 @@ public class ProductExchange {
 	private String description;
 	private String imageUrl;
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "userId", updatable = false, nullable = false)
 	private User user;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;

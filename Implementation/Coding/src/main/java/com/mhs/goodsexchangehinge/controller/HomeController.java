@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -14,20 +15,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mhs.goodsexchangehinge.service.ProductExchangeService;
+import com.mhs.goodsexchangehinge.service.ProductRequestService;
+import com.mhs.goodsexchangehinge.util.ImageUtil;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	private ProductExchangeService productExchangeService;
+	@Autowired
+	private ProductRequestService productRequestService;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/", "/get_home" }, method = RequestMethod.GET)
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("productExchangeList", productExchangeService.getAllProductExchangeList());
+		model.addAttribute("productRequestList", productRequestService.getAllProductRequestList());
 		logger.info("Welcome home!");
 		return "home";
+	}
+
+	@RequestMapping(value = "/product_exhange_images", method = RequestMethod.GET)
+	public void displayProductExchangeImage(@RequestParam("productExcId") int productExcId, HttpServletRequest request,
+			HttpServletResponse response) {
+		String imageUrl = productExchangeService.getProductById(productExcId).getImageUrl();
+		ImageUtil.showImage(productExcId, imageUrl, request, response);
+		logger.info("get image url and show image :" + imageUrl);
+	}
+
+	@RequestMapping(value = "/product_request_images", method = RequestMethod.GET)
+	public void displayRequestImage(@RequestParam("productReqId") int productReqId, HttpServletRequest request,
+			HttpServletResponse response) {
+		String imageUrl = productRequestService.getProductById(productReqId).getImageUrl();
+		ImageUtil.showImage(productReqId, imageUrl, request, response);
+		logger.info("get image url and show image :" + imageUrl);
 	}
 
 	@RequestMapping(value = "/register")

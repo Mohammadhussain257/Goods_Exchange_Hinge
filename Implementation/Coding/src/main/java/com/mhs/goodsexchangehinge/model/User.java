@@ -67,9 +67,9 @@ public class User {
 	private ProfilePic profilePic;
 	@OneToMany(mappedBy = "user")
 	private List<Login> login = new ArrayList<Login>();
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user", fetch = FetchType.EAGER)
 	private List<ProductExchange> productExchangelist = new ArrayList<>();
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ProductRequest> productRequestlist = new ArrayList<>();
 

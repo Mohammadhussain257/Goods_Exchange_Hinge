@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.mhs.goodsexchangehinge.model.ProductExchange;
 import com.mhs.goodsexchangehinge.model.ProductRequest;
@@ -32,6 +33,8 @@ public class ManageProductController {
 	private UserService userService;
 	@Autowired
 	private CategoryService categoryService;
+	/*@Autowired
+	private CommonsMultipartResolver commonMultipartResolver;*/
 
 	@RequestMapping(value = "/save_product", method = RequestMethod.POST)
 	public String saveProduct(@Valid @ModelAttribute("productExchange") ProductExchange productExchange,
@@ -79,6 +82,50 @@ public class ManageProductController {
 		return "redirect:/ProductRequest?userId=" + user.getUserId();
 	}
 
+	@RequestMapping(value = "/update_request_product", method = RequestMethod.POST)
+	public String updateRequestProduct(@Valid @ModelAttribute("productRequest") ProductRequest productRequest,
+			BindingResult result, @RequestParam int productReqId,
+			@RequestParam("image") CommonsMultipartFile file, Model model) {
+		if (result.hasErrors()) {
+			return "Products/editProductRequestDetail";
+		}
+		
+		String imageUrl = "";
+		if (file.isEmpty()) {
+			imageUrl = productRequestService.getProductById(productReqId).getImageUrl();
+		} else {
+			imageUrl = ImageUtil.writeImageToFile(file);
+		}
+		imageUrl = ImageUtil.writeImageToFile(file);
+		productRequest.setImageUrl(imageUrl);
+		
+		productRequestService.updateProduct(productRequest);
+		model.addAttribute("update", "updated successfully");
+		return "Products/editProductRequestDetail";
+	}
+
+	@RequestMapping(value = "/update_exchange_product", method = RequestMethod.POST)
+	public String updateExchangeProduct(@Valid @ModelAttribute("productExchange") ProductExchange productExchange,
+			BindingResult result, @RequestParam int productExcId,
+			@RequestParam("image") CommonsMultipartFile file, Model model) {
+		if (result.hasErrors()) {
+			return "Products/editProductExchangeDetail";
+		}
+		
+		String imageUrl = "";
+		if (file.isEmpty()) {
+			imageUrl = productExchangeService.getProductById(productExcId).getImageUrl();
+		} else {
+			imageUrl = ImageUtil.writeImageToFile(file);
+		}
+		imageUrl = ImageUtil.writeImageToFile(file);
+		productExchange.setImageUrl(imageUrl);
+		
+		productExchangeService.updateProduct(productExchange);
+		model.addAttribute("update", "updated successfully");
+		return "Products/editProductExchangeDetail";
+	}
+
 	@RequestMapping(value = "/exchangeProductDetails", method = RequestMethod.GET)
 	public String exchangeProductDetails(@RequestParam int userId, Model model) {
 		model.addAttribute("proudctExhangeList", productExchangeService.getAllProductExchangeListByUserId(userId));
@@ -124,4 +171,19 @@ public class ManageProductController {
 		model.addAttribute("deletemgs", "Product deleted successfully");
 		return "Products/ProductRequest";
 	}
+
+	@RequestMapping(value = "/edit_request_product", method = RequestMethod.GET)
+	public String editRequestProduct(@RequestParam int productReqId, Model model) {
+		model.addAttribute("categoryList", categoryService.getAllCategory());
+		model.addAttribute("productRequest", productRequestService.getProductById(productReqId));
+		return "Products/editProductRequestDetail";
+	}
+
+	@RequestMapping(value = "/edit_exchange_product", method = RequestMethod.GET)
+	public String editExchangeProduct(@RequestParam int productExcId, Model model) {
+		model.addAttribute("categoryList", categoryService.getAllCategory());
+		model.addAttribute("productExchange", productExchangeService.getProductById(productExcId));
+		return "Products/editProductExchangeDetail";
+	}
+
 }

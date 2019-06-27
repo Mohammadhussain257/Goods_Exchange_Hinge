@@ -40,4 +40,9 @@ public class ProductExchangeServiceImpl implements ProductExchangeService {
 		return productExchangeRepository.getAllProductExchangeListByUserId(userId);
 	}
 
+	@Override
+	public List<ProductExchange> getAllProductExchangeList() {
+		return productExchangeRepository.getAllProductExchangeList();
+	}
+
 }
