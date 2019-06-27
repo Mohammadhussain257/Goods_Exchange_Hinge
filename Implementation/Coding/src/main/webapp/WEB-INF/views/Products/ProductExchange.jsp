@@ -110,7 +110,8 @@
 												href="delete_product_exchange?productExcId=${pel.productExcId}"><i
 													class="fas fa-trash fa-2x"></i></a></span> <span><a
 												class="text-primary" data-toggle="tooltip"
-												data-placement="right" title="Edit" href="#"><i
+												data-placement="right" title="Edit"
+												href="edit_exchange_product?productExcId=${pel.productExcId}"><i
 													class="fas fa-edit fa-2x"></i></a></span></td>
 									</tr>
 								</c:forEach>

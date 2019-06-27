@@ -41,4 +41,9 @@ public class ProductRequestServiceImpl implements ProductRequestService {
 		return productRequestRepository.getAllProductRequestListByUserId(userId);
 	}
 
+	@Override
+	public List<ProductRequest> getAllProductRequestList() {
+		return productRequestRepository.getAllProductRequestList();
+	}
+
 }

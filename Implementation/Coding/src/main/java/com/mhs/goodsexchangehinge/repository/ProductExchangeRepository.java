@@ -15,5 +15,7 @@ public interface ProductExchangeRepository {
 	public ProductExchange getProductById(int productExcId);
 
 	public List<ProductExchange> getAllProductExchangeListByUserId(int userId);
+	
+	public List<ProductExchange> getAllProductExchangeList();
 
 }

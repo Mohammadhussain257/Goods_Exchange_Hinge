@@ -63,10 +63,8 @@
 								Cover</label>
 						</div>
 					</div>
-
 					<!-- Send button -->
 					<button class="btn btn-info btn-block mt-4" type="submit">UPLOAD</button>
-
 				</form:form>
 				<!--  form  -->
 
@@ -106,10 +104,10 @@
 												href="delete_request_exchange?productReqId=${prl.productReqId}"><i
 													class="fas fa-trash fa-2x"></i></a></span> <span><a
 												data-toggle="tooltip" data-placement="right" title="Edit"
-												class="text-primary" href="#"><i
+												class="text-primary"
+												href="edit_request_product?productReqId=${prl.productReqId}"><i
 													class="fas fa-edit fa-2x"></i></a></span></td>
 									</tr>
-
 								</c:forEach>
 							</tbody>
 							<tfoot>

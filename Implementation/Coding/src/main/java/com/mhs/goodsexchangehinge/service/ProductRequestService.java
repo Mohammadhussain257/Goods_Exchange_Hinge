@@ -14,4 +14,6 @@ public interface ProductRequestService {
 	public ProductRequest getProductById(int productReqId);
 
 	public List<ProductRequest> getAllProductRequestListByUserId(int userId);
+
+	public List<ProductRequest> getAllProductRequestList();
 }

@@ -2,6 +2,8 @@ package com.mhs.goodsexchangehinge.repository;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,6 +47,16 @@ public class ProductExchangeRepositoryImpl implements ProductExchangeRepository 
 		List<ProductExchange> pelist = HibernateUtil.getSession(sessionFactory)
 				.createQuery("from ProductExchange p where p.user.userId=" + userId + " ").list();
 		return (List<ProductExchange>) pelist;
+	}
+
+	@Override
+	public List<ProductExchange> getAllProductExchangeList() {
+		CriteriaQuery<ProductExchange> criteriaQuery = HibernateUtil.getSession(sessionFactory).getCriteriaBuilder()
+				.createQuery(ProductExchange.class);
+		criteriaQuery.from(ProductExchange.class);
+		List<ProductExchange> productExchangeList = HibernateUtil.getSession(sessionFactory).createQuery(criteriaQuery)
+				.getResultList();
+		return productExchangeList;
 	}
 
 }

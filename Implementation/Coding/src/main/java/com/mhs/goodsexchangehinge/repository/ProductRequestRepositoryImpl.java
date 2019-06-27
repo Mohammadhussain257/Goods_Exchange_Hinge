@@ -2,6 +2,8 @@ package com.mhs.goodsexchangehinge.repository;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +45,16 @@ public class ProductRequestRepositoryImpl implements ProductRequestRepository {
 		List<ProductRequest> prlist = HibernateUtil.getSession(sessionFactory)
 				.createQuery("from ProductRequest p where p.user.userId=" + userId + " ").list();
 		return (List<ProductRequest>) prlist;
+	}
+
+	@Override
+	public List<ProductRequest> getAllProductRequestList() {
+		CriteriaQuery<ProductRequest> criteriaQuery = HibernateUtil.getSession(sessionFactory).getCriteriaBuilder()
+				.createQuery(ProductRequest.class);
+		criteriaQuery.from(ProductRequest.class);
+		List<ProductRequest> productRequestList = HibernateUtil.getSession(sessionFactory).createQuery(criteriaQuery)
+				.getResultList();
+		return productRequestList;
 	}
 
 }

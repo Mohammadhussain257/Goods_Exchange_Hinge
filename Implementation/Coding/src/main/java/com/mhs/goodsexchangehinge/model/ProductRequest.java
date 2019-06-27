@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -27,7 +28,7 @@ public class ProductRequest {
 	@NotEmpty(message = "Please enter produt name")
 	private String productName;
 	@NotNull(message = "Please enter produt value")
-	@Min(value = 0, message = "Invalid product value")
+	@Min(value = 0, message = "Mimimum value should be 0.0")
 	private Double productValue;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -38,6 +39,7 @@ public class ProductRequest {
 	private String description;
 	private String imageUrl;
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId", updatable = false, nullable = false)
 	private User user;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
