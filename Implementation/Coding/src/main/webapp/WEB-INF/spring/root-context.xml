@@ -50,6 +50,23 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"></property>
+		<property name="port" value="465"></property>
+		<property name="username" value="goodsexchangehinge@gmail.com"></property>
+		<property name="password" value="goods_123"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.socketFactory.port">465</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:component-scan base-package="com.mhs.goodsexchangehinge" />
 	

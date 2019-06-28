@@ -12,7 +12,7 @@
 				<div class="avatar mx-auto col-lg-4 col-md-12 mb-4 mt-2">
 					<img style="width: 50%; height: 50%"
 						src="show_profile_pic?userId=${user.userId}"
-						class="rounded-circle img-fluid" alt="Responsive image">
+						class="rounded-circle img-fluid" alt="Profile picture">
 				</div>
 				<div class="mt-4">
 					<form

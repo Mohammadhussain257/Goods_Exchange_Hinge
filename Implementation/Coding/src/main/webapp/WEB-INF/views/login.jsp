@@ -10,7 +10,7 @@
 <body class="indigo lighten-4">
 	<!-- include header page -->
 	<%@ include file="./shared/header.jsp"%>
-	<hr class="mt-4"/>
+	<hr class="mt-4" />
 	<!--  form login -->
 	<div class="container">
 		<div class="row">
@@ -23,6 +23,12 @@
 						</c:if>
 						<c:if test="${not empty logout}">
 							<div class="alert alert-success" role="alert">${logout}</div>
+						</c:if>
+						<c:if test="${not empty emailnotfoundmsg}">
+							<div class="alert alert-warning" role="alert">${emailnotfoundmsg}</div>
+						</c:if>
+						<c:if test="${not empty emailsendsuccessmsg}">
+						<div class="alert alert-success" role="alert">${emailsendsuccessmsg}</div>
 						</c:if>
 						<form action="login" method="POST"
 							class="text-center border border-light p-5 heavy-rain-gradient">
@@ -50,10 +56,10 @@
 								</div>
 								<div>
 									<!-- Forgot password -->
-									<a href="#">Forgot password?</a>
+									<a href="#" data-toggle="modal" data-target="#modalLoginForm">Forgot
+										password?</a>
 								</div>
 							</div>
-
 							<!-- Sign in button -->
 							<button class="btn btn-info btn-block my-4" type="submit">Sign
 								in</button>
@@ -62,8 +68,37 @@
 						</form>
 						<!--form login -->
 					</div>
+					<form action="forgot_password" method="post">
+						<div class="modal fade winter-neva-gradient" id="modalLoginForm"
+							tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header text-center">
+										<h4 class="modal-title w-100 font-weight-bold">Reset
+											Password</h4>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body mx-3">
+										<div class="md-form mb-5">
+											<i class="fas fa-envelope prefix grey-text"></i> <input
+												type="email" class="form-control" required name="email">
+											<label>Your email</label>
+										</div>
+									</div>
+									<div class="modal-footer d-flex justify-content-center">
+										<button class="btn btn-default" type="submit">SEND</button>
+									</div>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
