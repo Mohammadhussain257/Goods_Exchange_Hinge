@@ -16,4 +16,6 @@ public interface ProductRequestRepository {
 	public List<ProductRequest> getAllProductRequestListByUserId(int userId);
 
 	public List<ProductRequest> getAllProductRequestList();
+
+	public List<ProductRequest> searchProduct(String Search);
 }

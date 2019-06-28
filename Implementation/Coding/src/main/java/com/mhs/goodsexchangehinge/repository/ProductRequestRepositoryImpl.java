@@ -4,10 +4,14 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mhs.goodsexchangehinge.model.ProductExchange;
 import com.mhs.goodsexchangehinge.model.ProductRequest;
 import com.mhs.goodsexchangehinge.util.HibernateUtil;
 
@@ -55,6 +59,16 @@ public class ProductRequestRepositoryImpl implements ProductRequestRepository {
 		List<ProductRequest> productRequestList = HibernateUtil.getSession(sessionFactory).createQuery(criteriaQuery)
 				.getResultList();
 		return productRequestList;
+	}
+
+	@Override
+	public List<ProductRequest> searchProduct(String Search) {
+		@SuppressWarnings("deprecation")
+		Criteria query = HibernateUtil.getSession(sessionFactory).createCriteria(ProductExchange.class);
+		query.add(Restrictions.ilike("productName", Search, MatchMode.START));
+		@SuppressWarnings("unchecked")
+		List<ProductRequest> searchList = query.list();
+		return (List<ProductRequest>) searchList;
 	}
 
 }

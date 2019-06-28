@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -57,6 +60,15 @@ public class ProductExchangeRepositoryImpl implements ProductExchangeRepository 
 		List<ProductExchange> productExchangeList = HibernateUtil.getSession(sessionFactory).createQuery(criteriaQuery)
 				.getResultList();
 		return productExchangeList;
+	}
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<ProductExchange> searchProduct(String search) {
+		Criteria query = HibernateUtil.getSession(sessionFactory).createCriteria(ProductExchange.class);
+		query.add(Restrictions.ilike("productName", search, MatchMode.START));
+		List<ProductExchange> searchList = query.list();
+		return (List<ProductExchange>) searchList;
 	}
 
 }

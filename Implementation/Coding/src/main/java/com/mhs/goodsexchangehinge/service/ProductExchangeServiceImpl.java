@@ -45,4 +45,9 @@ public class ProductExchangeServiceImpl implements ProductExchangeService {
 		return productExchangeRepository.getAllProductExchangeList();
 	}
 
+	@Override
+	public List<ProductExchange> searchProduct(String search) {
+		return productExchangeRepository.searchProduct(search);
+	}
+
 }

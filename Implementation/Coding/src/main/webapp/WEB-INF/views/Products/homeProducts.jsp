@@ -60,7 +60,10 @@
 									<!--Modal: modalSocial-->
 								</c:when>
 								<c:otherwise>
-									<a href="#">See More<i class="fas fa-angle-double-right"></i></a>
+									<a
+										href="getProductExchangetDetail?productExcId=${pel.productExcId}">See
+										More<i class="fas fa-angle-double-right"></i>
+									</a>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -126,7 +129,10 @@
 									<!--Modal: modalSocial-->
 								</c:when>
 								<c:otherwise>
-									<a href="#">See More<i class="fas fa-angle-double-right"></i></a>
+									<a
+										href="getProductRequestDetail?productReqId=${prl.productReqId}">See
+										More<i class="fas fa-angle-double-right"></i>
+									</a>
 								</c:otherwise>
 							</c:choose>
 						</div>
