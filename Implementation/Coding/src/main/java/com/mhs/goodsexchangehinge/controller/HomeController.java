@@ -6,28 +6,41 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mhs.goodsexchangehinge.model.User;
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.ProductRequestService;
+import com.mhs.goodsexchangehinge.service.UserService;
+import com.mhs.goodsexchangehinge.util.EmailUtil;
+import com.mhs.goodsexchangehinge.util.PasswordUtil;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-
+	@Autowired
+	private MailSender mailSender;
 	@Autowired
 	private ProductExchangeService productExchangeService;
 	@Autowired
 	private ProductRequestService productRequestService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -96,6 +109,28 @@ public class HomeController {
 	public String helpPage() {
 		logger.info("help page call");
 		return "help";
+	}
+
+	@PostMapping(value = "/forgot_password")
+	public String forgotPassword(@RequestParam("email") String toEmail, Model model) {
+		System.out.println("Email is: " + toEmail);
+		User user = userService.changePasswordByEmail(toEmail);
+		if ((userService.findUserByEmail(toEmail) == null)) {
+			model.addAttribute("emailnotfoundmsg", "Email Not Found");
+			logger.info("Email not found");
+			return "login";
+		}
+		if (user.getEmail() != null) {
+			String newPassword = PasswordUtil.randomPassword();
+			user.setPassword(passwordEncoder.encode(newPassword));
+			userService.updateUser(user);
+			String msgBody = "Your new password is: " + newPassword;
+			EmailUtil.sendEmail(mailSender, toEmail, "dikshyakarna@gmail.com", "Forgot Password", msgBody);
+			model.addAttribute("emailsendsuccessmsg",
+					"New Password has been send to your email pleae check your email.");
+			logger.info("Email found and send");
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/access-denied")
