@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mhs.goodsexchangehinge.model.Category;
+import com.mhs.goodsexchangehinge.model.ProductExchange;
+import com.mhs.goodsexchangehinge.model.ProductRequest;
 import com.mhs.goodsexchangehinge.service.CategoryService;
+import com.mhs.goodsexchangehinge.service.ProductExchangeService;
+import com.mhs.goodsexchangehinge.service.ProductRequestService;
 import com.mhs.goodsexchangehinge.service.UserService;
 
 @Controller
@@ -25,6 +29,12 @@ public class DashboardController {
 
 	@Autowired
 	private CategoryService categoryService;
+
+	@Autowired
+	private ProductExchangeService productExchangeService;
+
+	@Autowired
+	private ProductRequestService productRequestService;
 
 	@RequestMapping(value = "/getDashboard", method = RequestMethod.GET)
 	public String getDashboard() {
@@ -68,4 +78,29 @@ public class DashboardController {
 		return "redirect:/user_list";
 	}
 
+	@RequestMapping(value = "/dashboard_product_exchange", method = RequestMethod.GET)
+	public String getProductExchangePage(Model model) {
+		model.addAttribute("dpel", productExchangeService.getAllProductExchangeList());
+		return "dashboard/product/exchange";
+	}
+
+	@RequestMapping(value = "/dashboard_product_request", method = RequestMethod.GET)
+	public String getProductRequestePage(Model model) {
+		model.addAttribute("dprl", productRequestService.getAllProductRequestList());
+		return "dashboard/product/request";
+	}
+
+	@RequestMapping(value = "/deleteProductExchange", method = RequestMethod.GET)
+	public String deleteproductExchangeDetails(@RequestParam int productExcId, Model model) {
+		productExchangeService.deleteProduct(productExcId);
+		model.addAttribute("deletemgs", "Product deleted successfully");
+		return "Products/ProductExchange";
+	}
+
+	@RequestMapping(value = "/deleteRequestExchange", method = RequestMethod.GET)
+	public String deleteproductRequestDetails(@RequestParam int productReqId, Model model) {
+		productRequestService.deleteProduct(productReqId);
+		model.addAttribute("deletemgs", "Product deleted successfully");
+		return "Products/ProductRequest";
+	}
 }
