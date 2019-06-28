@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -131,6 +130,13 @@ public class HomeController {
 			logger.info("Email found and send");
 		}
 		return "login";
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String searchProducts(@RequestParam("productName") String search, Model model) {
+		model.addAttribute("searchProductExchangeList", productExchangeService.searchProduct(search));
+		//model.addAttribute("searchProductRquestList",productRequestService.searchProduct(search));
+		return "Products/search";
 	}
 
 	@RequestMapping(value = "/access-denied")

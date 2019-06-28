@@ -46,4 +46,9 @@ public class ProductRequestServiceImpl implements ProductRequestService {
 		return productRequestRepository.getAllProductRequestList();
 	}
 
+	@Override
+	public List<ProductRequest> searchProduct(String Search) {
+		return productRequestRepository.searchProduct(Search);
+	}
+
 }

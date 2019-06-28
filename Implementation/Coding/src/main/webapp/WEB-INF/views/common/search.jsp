@@ -8,17 +8,20 @@
 </head>
 <body>
 	<nav class="navbar navbar-light purple lighten-5">
-		<form action="" class="input-group md-form form-sm form-2 pl-0">
+		<form action="search?${_csrf.parameterName}=${_csrf.token}"
+			method="post" class="input-group md-form form-sm form-2 pl-0">
 			<div class="input-group md-form form-sm form-2 pl-0">
-				<input class="form-control my-0 py-1 amber-border" type="text"
+				<input class="form-control my-0 py-1 amber-border" type="text" name="productName"
 					placeholder="Search Product" aria-label="Search Product" required>
 				<div class="input-group-append">
-					<button class="input-group-text amber lighten-3" type="submit" id="basic-text1"><i
-						class="fas fa-search text-grey" aria-hidden="true"></i></button>
+					<button class="input-group-text amber lighten-3" type="submit"
+						id="basic-text1">
+						<i class="fas fa-search text-grey" aria-hidden="true"></i>
+					</button>
 				</div>
 			</div>
 		</form>
 	</nav>
-	<hr/>
+	<hr />
 </body>
 </html>
