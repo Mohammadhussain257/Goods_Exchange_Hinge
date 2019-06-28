@@ -23,7 +23,8 @@
 <body>
 	<!--Navbar -->
 	<nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color">
-		<a class="navbar-brand" href="get_home">Goods Exchange Hinge</a>
+		<a class="navbar-brand" href="get_home"><i
+			class="fab fa-accessible-icon fa-3x"></i>Goods Exchange Hinge</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent-333"
 			aria-controls="navbarSupportedContent-333" aria-expanded="false"
@@ -32,9 +33,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent-333">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="get_home">Home <span
-						class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link" href="get_home">Home
+						<span class="sr-only">(current)</span>
 				</a></li>
 				<!--  allow access to anonymous user start-->
 
