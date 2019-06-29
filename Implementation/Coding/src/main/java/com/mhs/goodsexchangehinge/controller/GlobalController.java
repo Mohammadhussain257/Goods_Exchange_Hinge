@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.mhs.goodsexchangehinge.dto.UserModel;
 import com.mhs.goodsexchangehinge.model.User;
@@ -55,4 +58,13 @@ public class GlobalController {
 		// user is not null and already present inside the session
 		return (UserModel) session.getAttribute("userModel");
 	}
+
+	@ExceptionHandler(NoHandlerFoundException.class)
+	public String handlerNoHandlerFoundException(Model model) {
+		model.addAttribute("errorTitle", "The page is not constructed!");
+		model.addAttribute("errorDescription", "The page your are looking for is not avialable now!");
+		model.addAttribute("title", "404 Error Page");
+		return "404";
+	}
+
 }
