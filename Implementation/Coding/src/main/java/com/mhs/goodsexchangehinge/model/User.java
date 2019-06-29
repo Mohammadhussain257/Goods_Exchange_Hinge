@@ -72,6 +72,9 @@ public class User {
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ProductRequest> productRequestlist = new ArrayList<>();
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Faq> faqList = new ArrayList<>();
 
 	public int getUserId() {
 		return userId;
@@ -199,6 +202,14 @@ public class User {
 
 	public void setProductRequestlist(List<ProductRequest> productRequestlist) {
 		this.productRequestlist = productRequestlist;
+	}
+
+	public List<Faq> getFaqList() {
+		return faqList;
+	}
+
+	public void setFaqList(List<Faq> faqList) {
+		this.faqList = faqList;
 	}
 
 }

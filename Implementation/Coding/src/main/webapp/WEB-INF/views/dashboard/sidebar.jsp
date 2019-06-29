@@ -40,7 +40,7 @@
 			</a> <a href="user_list"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-table mr-3"></i>USER DETAILS
-			</a> <a href="#"
+			</a> <a href="getFaq"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-money-bill-alt mr-3"></i>FAQ
 			</a>

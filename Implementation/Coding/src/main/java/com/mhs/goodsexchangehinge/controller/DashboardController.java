@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mhs.goodsexchangehinge.model.Category;
-import com.mhs.goodsexchangehinge.model.ProductExchange;
-import com.mhs.goodsexchangehinge.model.ProductRequest;
+import com.mhs.goodsexchangehinge.model.Faq;
+import com.mhs.goodsexchangehinge.model.User;
 import com.mhs.goodsexchangehinge.service.CategoryService;
+import com.mhs.goodsexchangehinge.service.FaqService;
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.ProductRequestService;
 import com.mhs.goodsexchangehinge.service.UserService;
@@ -36,9 +37,18 @@ public class DashboardController {
 	@Autowired
 	private ProductRequestService productRequestService;
 
+	@Autowired
+	private FaqService faqService;
+
 	@RequestMapping(value = "/getDashboard", method = RequestMethod.GET)
 	public String getDashboard() {
 		return "dashboard/dashboard";
+	}
+
+	@RequestMapping(value = "/getFaq", method = RequestMethod.GET)
+	public String getFaq(Model model) {
+		model.addAttribute("faqList", faqService.getAllFaqList());
+		return "dashboard/faq";
 	}
 
 	@RequestMapping(value = "/user_list", method = RequestMethod.GET)
@@ -64,6 +74,47 @@ public class DashboardController {
 			logger.info("category added successfully");
 		}
 		return "dashboard/category/addCategories";
+	}
+
+	@RequestMapping(value = "/addfaq", method = RequestMethod.POST)
+	public String addFAQ(@Valid @ModelAttribute("faq") Faq faq, BindingResult result,
+			@RequestParam("userId") int userId, Model model) {
+		if (result.hasErrors()) {
+			logger.info("error while adding faq");
+			return "dashboard/faq";
+		}
+		User user = userService.getUserById(userId);
+		if (faq != null) {
+			user.getFaqList().add(faq);
+			faq.setUser(user);
+			faqService.saveFaq(faq);
+			logger.info("Faq saved");
+		}
+		return "dashboard/faq";
+	}
+
+	@RequestMapping(value = "/delete_faq", method = RequestMethod.GET)
+	public String deleteFaq(@RequestParam int id, Model model) {
+		faqService.deleteFaq(id);
+		model.addAttribute("deleteMsg", "Faq deleted");
+		return "dashboard/faq";
+	}
+
+	@RequestMapping(value = "update_faq", method = RequestMethod.POST)
+	public String updateFaq(@Valid @ModelAttribute("faq") Faq faq, BindingResult result, @RequestParam int id) {
+		if (result.hasErrors()) {
+			return "dashboard/editFaq";
+		}
+		faqService.updateFaq(faq);
+		logger.info("Faq updated");
+
+		return "dashboard/faq";
+	}
+
+	@RequestMapping(value = "/edit_faq", method = RequestMethod.GET)
+	public String editForm(@RequestParam int id, Model model) {
+		model.addAttribute("faq", faqService.getFaqById(id));
+		return "dashboard/editFaq";
 	}
 
 	@RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)

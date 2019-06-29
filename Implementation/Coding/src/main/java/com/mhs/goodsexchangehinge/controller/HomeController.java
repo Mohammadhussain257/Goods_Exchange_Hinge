@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mhs.goodsexchangehinge.model.User;
+import com.mhs.goodsexchangehinge.service.FaqService;
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.ProductRequestService;
 import com.mhs.goodsexchangehinge.service.UserService;
@@ -38,6 +39,8 @@ public class HomeController {
 	private ProductRequestService productRequestService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private FaqService faqService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -105,7 +108,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/help", method = RequestMethod.GET)
-	public String helpPage() {
+	public String helpPage(Model model) {
+		model.addAttribute("faqList", faqService.getAllFaqList());
 		logger.info("help page call");
 		return "help";
 	}
@@ -135,7 +139,7 @@ public class HomeController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchProducts(@RequestParam("productName") String search, Model model) {
 		model.addAttribute("searchProductExchangeList", productExchangeService.searchProduct(search));
-		//model.addAttribute("searchProductRquestList",productRequestService.searchProduct(search));
+		// model.addAttribute("searchProductRquestList",productRequestService.searchProduct(search));
 		return "Products/search";
 	}
 
