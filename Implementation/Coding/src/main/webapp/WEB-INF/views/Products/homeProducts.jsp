@@ -82,7 +82,7 @@
 						<!--Image-->
 						<div class="view overlay rounded z-depth-1 mb-4">
 							<img class="img-fluid"
-								src="product_exhange_images?productReqId=${prl.productReqId}"
+								src="product_request_images?productReqId=${prl.productReqId}"
 								alt="product request image"> <a> </a>
 						</div>
 

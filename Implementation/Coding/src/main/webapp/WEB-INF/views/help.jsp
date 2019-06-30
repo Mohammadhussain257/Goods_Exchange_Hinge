@@ -34,27 +34,45 @@
 							<div class="row my-4">
 								<div class="col-md-8">
 									${faq.content}
-
 									<blockquote class="blockquote bq-primary">
 										<p class="bq-title">Note:</p>
 										<p>${faq.note}</p>
 									</blockquote>
-
-								</div>
-								<div class="col-md-4 mt-3 pt-2">
-									<div class="view z-depth-1">
-										<a href="resources/image/help/how_can_i_exchange.png"><img
-											src="resources/image/help/how_can_i_exchange.png" alt=""
-											class="img-fluid"></a>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</c:forEach>
 		</c:if>
+	</div>
+	<div class="container mt-3 pt-2">
+		<div class="row mt-3 pt-2">
+			<div class="col-sm">
+				<h6 class="text-secondary font-weight-bold">Register, Login and View Produc Details</h6>
+				<div class="view z-depth-1">
+					<a href="resources/image/help/how_can_i_exchange.png"><img
+						src="resources/image/help/how_can_i_exchange.png" alt=""
+						class="img-fluid"></a>
+				</div>
+			</div>
+			<div class="col-sm">
+			<h6 class="text-secondary font-weight-bold">Manage Your Profile</h6>
+				<div class="view z-depth-1">
+					<a href="resources/image/help/how_can_i_mange_profile.png"><img
+						src="resources/image/help/how_can_i_mange_profile.png" alt=""
+						class="img-fluid"></a>
+				</div>
+			</div>
+			<div class="col-sm-4">
+			<h6 class="text-secondary font-weight-bold">Upload and Manage Products</h6>
+				<div class="view z-depth-1">
+					<a href="resources/image/help/how_can_i_upload.png"><img
+						src="resources/image/help/how_can_i_upload.png" alt=""
+						class="img-fluid"></a>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!--Accordion wrapper-->
 	<!-- include footer page -->

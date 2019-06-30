@@ -30,7 +30,7 @@
 			<!-- Category -->
 			<label>Product Category</label>
 			<form:errors path="category" cssClass="text-warning" />
-			<select name="" required
+			<select name="" 
 				class="browser-default custom-select mb-4 category">
 				<option value="" disabled selected>Choose Category</option>
 				<c:forEach items="${categoryList}" var="catList">

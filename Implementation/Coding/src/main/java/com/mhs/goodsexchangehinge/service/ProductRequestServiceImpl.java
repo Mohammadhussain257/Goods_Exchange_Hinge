@@ -33,7 +33,8 @@ public class ProductRequestServiceImpl implements ProductRequestService {
 
 	@Override
 	public ProductRequest getProductById(int productReqId) {
-		return productRequestRepository.getProductById(productReqId);
+		ProductRequest productRequest = productRequestRepository.getProductById(productReqId);
+		return productRequest;
 	}
 
 	@Override

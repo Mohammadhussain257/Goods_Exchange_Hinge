@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div>
+<div class=" teal lighten-5">
 	<%@ include file="../shared/header.jsp"%>
 	<div class="container-fluid">
 		<!--Section: Live preview-->

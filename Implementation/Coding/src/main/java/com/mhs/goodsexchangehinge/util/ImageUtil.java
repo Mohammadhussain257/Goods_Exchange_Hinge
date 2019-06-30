@@ -41,7 +41,7 @@ public class ImageUtil {
 		BufferedOutputStream out = null;
 		try {
 			in = new BufferedInputStream(new FileInputStream(file), DEFAULT_BUFFER_SIZE);
-			out = new BufferedOutputStream(new FileOutputStream(file), DEFAULT_BUFFER_SIZE);
+			out = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
 
 			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
 			int length;

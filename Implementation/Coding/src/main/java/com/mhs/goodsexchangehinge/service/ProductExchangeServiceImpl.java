@@ -32,7 +32,8 @@ public class ProductExchangeServiceImpl implements ProductExchangeService {
 
 	@Override
 	public ProductExchange getProductById(int productExcId) {
-		return productExchangeRepository.getProductById(productExcId);
+		ProductExchange productExchange = productExchangeRepository.getProductById(productExcId);
+		return productExchange;
 	}
 
 	@Override
