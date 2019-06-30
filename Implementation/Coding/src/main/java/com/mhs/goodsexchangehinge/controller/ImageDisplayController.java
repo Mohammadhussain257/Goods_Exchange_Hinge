@@ -32,7 +32,7 @@ public class ImageDisplayController {
 			HttpServletResponse response) {
 		String imageUrl = productExchangeService.getProductById(productExcId).getImageUrl();
 		ImageUtil.showImage(productExcId, imageUrl, request, response);
-		logger.info("get image url and show image :" + imageUrl);
+		logger.info("get image url and show image :" + imageUrl + " image id" + productExcId);
 	}
 
 	@RequestMapping(value = "/product_request_images", method = RequestMethod.GET)
@@ -40,13 +40,16 @@ public class ImageDisplayController {
 			HttpServletResponse response) {
 		String imageUrl = productRequestService.getProductById(productReqId).getImageUrl();
 		ImageUtil.showImage(productReqId, imageUrl, request, response);
-		logger.info("get image url and show image :" + imageUrl);
+		logger.info("get image url and show image :" + imageUrl + " image id " + productReqId);
 	}
 
 	@RequestMapping(value = "/show_profile_pic", method = RequestMethod.GET)
 	public void showProfilePic(@RequestParam int userId, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("==========================");
 		String imageUrl = showProfilePicService.showProfilePicById(userId).getImage_url();
+		System.out.println("Image url is :"+imageUrl);
 		ImageUtil.showImage(userId, imageUrl, request, response);
-		logger.info("get image url and show image :" + imageUrl);
+		System.out.println("==========================");
+		logger.info("get image url and show image :" + imageUrl + " image id " + userId);
 	}
 }

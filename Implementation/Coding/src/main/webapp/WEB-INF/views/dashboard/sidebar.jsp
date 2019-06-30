@@ -34,10 +34,10 @@
 							class="dropdown-item">PRODUCT REQUEST</a>
 					</div></li>
 			</ul>
-			<a href="#"
+			<!-- <a href="#"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-user mr-3"></i>ACTIVE USER
-			</a> <a href="user_list"
+			</a> --> <a href="user_list"
 				class="light-green lighten-5 list-group-item list-group-item-action waves-effect">
 				<i class="fas fa-table mr-3"></i>USER DETAILS
 			</a> <a href="getFaq"
