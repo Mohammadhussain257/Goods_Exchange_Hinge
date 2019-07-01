@@ -17,6 +17,7 @@ import com.mhs.goodsexchangehinge.model.Category;
 import com.mhs.goodsexchangehinge.model.Faq;
 import com.mhs.goodsexchangehinge.model.User;
 import com.mhs.goodsexchangehinge.service.CategoryService;
+import com.mhs.goodsexchangehinge.service.DashboardService;
 import com.mhs.goodsexchangehinge.service.FaqService;
 import com.mhs.goodsexchangehinge.service.ProductExchangeService;
 import com.mhs.goodsexchangehinge.service.ProductRequestService;
@@ -40,8 +41,16 @@ public class DashboardController {
 	@Autowired
 	private FaqService faqService;
 
+	@Autowired
+	private DashboardService dashboardService;
+
 	@RequestMapping(value = "/getDashboard", method = RequestMethod.GET)
-	public String getDashboard() {
+	public String getDashboard(Model model) {
+		model.addAttribute("totalExchangeProduct", dashboardService.countAllExchangeProduct());
+		model.addAttribute("totalRequestProduct", dashboardService.countAllRequestProduct());
+		model.addAttribute("totalUser", dashboardService.countAllUser());
+		model.addAttribute("totalFaq", dashboardService.countAllFaq());
+		model.addAttribute("totalCategory", dashboardService.countAllCategory());
 		return "dashboard/dashboard";
 	}
 
@@ -154,4 +163,5 @@ public class DashboardController {
 		model.addAttribute("deletemgs", "Product deleted successfully");
 		return "Products/ProductRequest";
 	}
+
 }
