@@ -128,7 +128,7 @@ public class HomeController {
 			user.setPassword(passwordEncoder.encode(newPassword));
 			userService.updateUser(user);
 			String msgBody = "Your new password is: " + newPassword;
-			EmailUtil.sendEmail(mailSender, toEmail, "dikshyakarna@gmail.com", "Forgot Password", msgBody);
+			EmailUtil.sendEmail(mailSender, toEmail, "goodsexchangehinge@gmail.com", "Forgot Password", msgBody);
 			model.addAttribute("emailsendsuccessmsg",
 					"New Password has been send to your email pleae check your email.");
 			logger.info("Email found and send");

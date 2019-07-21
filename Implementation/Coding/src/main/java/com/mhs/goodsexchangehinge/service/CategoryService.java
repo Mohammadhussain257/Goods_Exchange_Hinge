@@ -15,5 +15,9 @@ public interface CategoryService {
 	public Category getCategoryById(int id);
 
 	public List<Category> getAllCategory();
+	
+	public boolean addCategory(Category category);
+	
+	public boolean deleteCategoryTest(int id);
 
 }
