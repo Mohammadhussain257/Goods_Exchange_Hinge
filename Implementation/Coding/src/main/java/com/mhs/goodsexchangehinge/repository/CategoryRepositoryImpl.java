@@ -50,4 +50,32 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 		return categoryList;
 	}
 
+	@Override
+	public boolean addCategory(Category category) {
+		try {
+			HibernateUtil.getSession(sessionFactory).merge(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	@Override
+	public boolean deleteCategoryTest(int id) {
+		try {
+			Category cat = new Category();
+			if (cat != null) {
+				HibernateUtil.getSession(sessionFactory).delete(cat);
+			}
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
 }

@@ -82,7 +82,7 @@
 
 							<!-- Phone number -->
 							<form:errors path="phoneNumber" cssClass="text-warning" />
-							<form:input type="text" id="defaultRegisterPhonePassword"
+							<form:input type="number" id="defaultRegisterPhonePassword"
 								class="form-control" placeholder="Phone number"
 								path="phoneNumber"
 								aria-describedby="defaultRegisterFormPhoneHelpBlock"></form:input>
